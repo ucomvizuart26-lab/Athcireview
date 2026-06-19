@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ATH CI</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATH CI — The Best Forwarder | Transit &amp; Logistique Import-Export</title>
+<meta name="description" content="ATH CI, spécialiste du transit, de la logistique et du dédouanement en Afrique de l'Ouest. Import, export, dédouanement, transport maritime, aérien et terrestre depuis Abidjan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ NOISE / GRAIN OVERLAY ============ -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ TOP MANIFEST BAR ============ -->
+<div class="manifest-bar">
+  <div class="manifest-track">
+    <span>ABIDJAN</span><span class="sep">·</span>
+    <span>SAN PEDRO</span><span class="sep">·</span>
+    <span>ACCRA</span><span class="sep">·</span>
+    <span>DAKAR</span><span class="sep">·</span>
+    <span>LAGOS</span><span class="sep">·</span>
+    <span>OUAGADOUGOU</span><span class="sep">·</span>
+    <span>BAMAKO</span><span class="sep">·</span>
+    <span>SHANGHAI</span><span class="sep">·</span>
+    <span>ABIDJAN</span><span class="sep">·</span>
+    <span>SAN PEDRO</span><span class="sep">·</span>
+    <span>ACCRA</span><span class="sep">·</span>
+    <span>DAKAR</span><span class="sep">·</span>
+    <span>LAGOS</span><span class="sep">·</span>
+    <span>OUAGADOUGOU</span><span class="sep">·</span>
+    <span>BAMAKO</span><span class="sep">·</span>
+    <span>SHANGHAI</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- ============ HEADER / APP NAV ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#accueil" class="brand" data-route="accueil" aria-label="ATH CI — accueil">
+      <img class="brand-logo" src="https://i.ibb.co/HDrv36xN/ATH-CI-horizontal.png" alt="ATH CI — The Best Forwarder" width="900" height="333">
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#accueil" data-route="accueil">Accueil</a>
+      <a href="#services" data-route="services">Services</a>
+      <a href="#apropos" data-route="apropos">Qui sommes-nous</a>
+      <a href="#realisations" data-route="realisations">Réalisations</a>
+      <a href="#contact" data-route="contact">Contact</a>
+      
+    </nav>
+
+    <a href="#devis" data-route="devis" class="btn btn-primary header-cta">Demander un devis</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ APP VIEWPORT ============ -->
+<main id="app">
+
+  <!-- =========================================================
+       VUE 1 — ACCUEIL
+       ========================================================= -->
+  <section class="view" id="view-accueil" data-view="accueil">
+
+    <div class="hero">
+      <div class="container hero-grid">
+        <div class="hero-inner">
+  <p class="eyebrow"><span class="eyebrow-dot"></span>TRANSIT · LOGISTIQUE · TRANSPORT</p>
+  <h1 class="hero-title">
+    Votre meilleur <br> transitaire connecté<br>
+    <span class="hero-title-accent">au reste du monde.</span>
+  </h1>
+  <p class="hero-sub">
+    ATH CI accompagne entreprises et particuliers avec des solutions logistiques efficaces, adaptés au exigences du commerce moderne
+  </p>
+  <div class="hero-cta-row">
+    <a href="#devis" data-route="devis" class="btn btn-primary">Demander un devis</a>
+    <a href="#services" data-route="services" class="btn btn-ghost">Voir nos prestations <span class="arrow">→</span></a>
+  </div>
+</div>
+        <div class="hero-map" aria-hidden="true">
+  <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#32A959" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#32A959" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="abiGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blueMap">
+        <feColorMatrix type="matrix"
+          values="0.1 0 0 0 0.13
+                  0.1 0 0 0 0.35
+                  0.5 0 0 0 0.70
+                  0   0 0 1 0"/>
+      </filter>
+      <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
+  <path d="M 12 0 L 0 0 0 12" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+</pattern>
+    </defs>
+
+  <!-- CARTE DU MONDE en bleu azur -->
+  <image href="https://i.ibb.co/dH418JJ/worldmap.png"
+       x="20" y="0" width="1000" height="500"
+       filter="url(#blueMap)"
+       opacity="0.15"
+       preserveAspectRatio="xMidYMid meet"/>
+
+  <!-- ======= ROUTES depuis ABIDJAN ======= -->
+  <!-- Abidjan = ~cx:455 cy:295 sur carte 1000x500 Mercator -->
+
+  <!-- → Dakar (415, 230) -->
+<path id="r1" class="route"
+      d="M455 272 Q435 251 415 230"
+      stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
+
+<!-- → Bamako (437, 244) -->
+<path id="r4" class="route"
+      d="M455 272 Q446 258 437 244"
+      stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
+
+<!-- → Ouagadougou (460, 245) -->
+<path id="r5" class="route"
+      d="M455 272 Q457 258 460 245"
+      stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
+
+<!-- → Accra (470, 265) -->
+<path id="r2" class="route"
+      d="M455 272 Q462 268 470 265"
+      stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
+
+<!-- → Lagos (492, 240) -->
+<path id="r3" class="route"
+      d="M455 272 Q473 256 492 240"
+      stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
+
+<!-- → Shanghai (840, 179) -->
+<path id="r6" class="route"
+      d="M455 272 Q647 225 840 179"
+      stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
+
+  <!-- ======= NOEUDS ======= -->
+  <g class="nodes">
+
+    <!-- Dakar ~392,242 -->
+    <circle class="node-glow" cx="415" cy="230" r="16" fill="url(#dotGlow)"/>
+    <circle cx="415" cy="230" r="4" fill="#32A959"/>
+    <text class="node-label" x="376" y="236" text-anchor="end"></text>
+
+    <!-- Bamako ~432,232 -->
+    <circle class="node-glow" cx="437" cy="244" r="16" fill="url(#dotGlow)"/>
+    <circle cx="437" cy="244" r="4" fill="#32A959"/>
+    <text class="node-label" x="480" y="250" text-anchor="end"></text>
+
+    <!-- Ouagadougou ~490,235 -->
+    <circle class="node-glow" cx="460" cy="245" r="16" fill="url(#dotGlow)"/>
+    <circle cx="460" cy="245" r="4" fill="#32A959"/>
+    <text class="node-label" x="460" y="240" text-anchor="start"></text>
+
+    <!-- Accra ~490,298 -->
+    <circle class="node-glow" cx="470" cy="265" r="16" fill="url(#dotGlow)"/>
+    <circle cx="470" cy="265" r="4" fill="#32A959"/>
+    <text class="node-label" x="470" y="274" text-anchor="start"></text>
+
+    <!-- Lagos ~528,282 -->
+    <circle class="node-glow" cx="492" cy="240" r="16" fill="url(#dotGlow)"/>
+    <circle cx="492" cy="240" r="4" fill="#32A959"/>
+    <text class="node-label" x="480" y="260" text-anchor="start"></text>
+
+    <!-- Shanghai ~780,158 -->
+    <circle class="node-glow" cx="840" cy="179" r="20" fill="url(#dotGlow)"/>
+    <circle cx="840" cy="179" r="4" fill="#32A959"/>
+    <text class="node-label" x="780" y="142" text-anchor="middle"></text>
+
+   <!-- ABIDJAN hub central — coordonnées corrigées -->
+<circle class="node-glow" cx="455" cy="272" r="30" fill="url(#abiGlow)"/>
+<circle cx="455" cy="272" r="11" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.35"/>
+<circle class="node-dot node-main" cx="455" cy="272" r="6" fill="#FFFFFF"/>
+<text class="node-label node-main-label" x="455" y="295" text-anchor="middle"></text>
+
+  </g>
+
+  <g class="packets"></g>
+</svg>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <span class="trust-label">PRÉSENCE &amp; CORRIDORS ACTIFS</span>
+        <div class="trust-flags">
+          <span>Côte d'Ivoire</span>
+          <span>Ghana</span>
+          <span>Sénégal</span>
+          <span>Nigeria</span>
+          <span>Burkina Faso</span>
+          <span>Mali</span>
+          <span>Chine</span>
+        </div>
+      </div>
+    </div>
+
+   <div class="teaser">
+  <div class="container teaser-grid">
+    <a href="#services" data-route="services" class="teaser-card">
+      <span class="teaser-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 16l4-8 4 4 4-9 6 13H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <h3>Nos prestations</h3>
+      <p>Export, import et accompagnement sur mesure dans tout le corridor ouest-africain.</p>
+      <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
+    </a>
+    <a href="#apropos" data-route="apropos" class="teaser-card">
+      <span class="teaser-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <h3>Qui sommes-nous</h3>
+      <p>Notre méthode de travail, nos engagements et notre présence régionale.</p>
+      <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
+    </a>
+    <a href="#realisations" data-route="realisations" class="teaser-card">
+      <span class="teaser-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <h3>Réalisations</h3>
+      <p>Photos et vidéos de nos opérations sur le terrain à travers l'Afrique de l'Ouest.</p>
+      <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
+    </a>
+    <a href="#contact" data-route="contact" class="teaser-card">
+      <span class="teaser-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <h3>Contact</h3>
+      <p>Une question, un dossier en cours ? Notre équipe vous répond directement.</p>
+      <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
+    </a>
+  </div>
+</div>
+  </section>
+
+  <!-- =========================================================
+       VUE 2 — SERVICES
+       ========================================================= -->
+  <section class="view" id="view-services" data-view="services">
+    <div class="page-hero page-hero--services">
+      <div class="container">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>NOS DOMAINES D'INTERVENTION</p>
+        <h1 class="page-title">Deux sens de circulation.<br>Une seule exigence&nbsp;: la maîtrise.</h1>
+      </div>
+    </div>
+
+    <div class="services-body">
+      <div class="container">
+        <div class="service-grid">
+
+          <article class="service-card service-card--feature">
+            <div class="service-card-head">
+              <span class="service-index">EXPORT</span>
+              <h3>Transit &amp; logistique export</h3>
+            </div>
+            <p class="service-desc">
+              ATH CI accompagne les entreprises dans la gestion complète de leurs
+              opérations d'exportation, y compris pour les volumes importants,
+              avec une exécution conforme aux normes du commerce international.
+            </p>
+            <ul class="service-list">
+              <li>Préparation et gestion des dossiers d'export</li>
+              <li>Formalités douanières et administratives</li>
+              <li>Coordination du transport maritime, aérien ou terrestre</li>
+              <li>Suivi et sécurisation des marchandises jusqu'à destination</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-card-head">
+              <span class="service-index service-index--alt">IMPORT</span>
+              <h3>Transit &amp; logistique import</h3>
+            </div>
+            <p class="service-desc">
+              De l'arrivée des marchandises à leur mise à disposition finale,
+              nous prenons en charge l'ensemble des opérations d'importation.
+            </p>
+            <ul class="service-list">
+              <li>Procédures douanières à l'import</li>
+              <li>Dédouanement rapide et sécurisé</li>
+              <li>Coordination logistique et transport local</li>
+              <li>Assistance réglementaire et conseil personnalisé</li>
+            </ul>
+          </article>
+
+          <article class="service-card service-card--ghost">
+            <div class="service-card-head">
+              <span class="service-index service-index--ghost">SUR MESURE</span>
+              <h3>Un accompagnement à la réalité du marché</h3>
+            </div>
+            <p class="service-desc">
+              À l'import comme à l'export, nous plaçons la performance, la
+              conformité et la satisfaction client au cœur de nos prestations,
+              avec des solutions adaptées aux réalités du marché africain et
+              international.
+            </p>
+            <a href="#devis" data-route="devis" class="service-link">Construire votre dossier <span class="arrow">→</span></a>
+          </article>
+
+        </div>
+
+        <div class="section-head" style="margin-top:88px;">
+          <p class="eyebrow eyebrow-dark"><span class="eyebrow-dot"></span>COMMENT NOUS TRAVAILLONS</p>
+          <h2 class="section-title">De la demande au dossier clos, <br class="br-desktop">quatre étapes, aucune surprise.</h2>
+        </div>
+
+        <ol class="process-line">
+          <li class="process-step">
+            <span class="process-mark">01</span>
+            <h3>Cadrage de l'opération</h3>
+            <p>Analyse de la marchandise, du corridor et des délais. Choix du mode de transport adapté.</p>
+          </li>
+          <li class="process-step">
+            <span class="process-mark">02</span>
+            <h3>Montage du dossier</h3>
+            <p>Préparation documentaire, formalités douanières et administratives, anticipation des points de contrôle.</p>
+          </li>
+          <li class="process-step">
+            <span class="process-mark">03</span>
+            <h3>Exécution &amp; transport</h3>
+            <p>Coordination maritime, aérienne ou terrestre. Suivi actif jusqu'au franchissement des points critiques.</p>
+          </li>
+          <li class="process-step">
+            <span class="process-mark">04</span>
+            <h3>Mise à disposition</h3>
+            <p>Livraison finale sécurisée et clôture du dossier, avec compte rendu transmis au client.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       VUE 3 — QUI SOMMES-NOUS
+       ========================================================= -->
+  <section class="view" id="view-apropos" data-view="apropos">
+    <div class="page-hero page-hero--apropos">
+      <div class="container">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>QUI SOMMES-NOUS</p>
+        <h1 class="page-title">La ponctualité n'est pas<br>une promesse commerciale.<br>C'est une donnée de manifeste.</h1>
+        <p class="page-sub">
+          Dans le transit, chaque jour de retard a un coût réel&nbsp;: stockage,
+          rupture de stock, pénalités contractuelles. Notre organisation est
+          construite pour éliminer les angles morts entre le départ de la
+          marchandise et sa mise à disposition.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="why-list why-list--standalone">
+        <div class="why-item">
+          <span class="why-num">01</span>
+          <div>
+            <h3>Conformité douanière maîtrisée</h3>
+            <p>Dossiers montés selon les exigences réglementaires de chaque
+            corridor, pour limiter les blocages en zone portuaire ou frontalière.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">02</span>
+          <div>
+            <h3>Multimodal, par nécessité</h3>
+            <p>Maritime, aérien ou terrestre&nbsp;: le mode de transport se choisit
+            selon le délai, le volume et le corridor — jamais par habitude.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">03</span>
+          <div>
+            <h3>Sécurisation de bout en bout</h3>
+            <p>Suivi continu de la marchandise jusqu'à destination, avec un
+            point de contact unique tout au long de l'opération.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">04</span>
+          <div>
+            <h3>Lecture fine du marché régional</h3>
+            <p>Une présence opérationnelle sur les principaux corridors
+            d'Afrique de l'Ouest, pensée pour vos flux réels, pas pour la carte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="network">
+      <div class="container">
+        <div class="section-head section-head--light">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>PRÉSENCE STRATÉGIQUE EN AFRIQUE DE L'OUEST</p>
+          <h2 class="section-title section-title--light">
+            ATH CI opère dans les hubs qui font<br class="br-desktop">
+            bouger vos marchandises.
+          </h2>
+          <p class="network-sub">
+            Ports, aéroports et corridors terrestres&nbsp;: nous facilitons vos
+            flux commerciaux entre la Chine et les principaux marchés ouest-africains.
+          </p>
+        </div>
+
+        <div class="manifest-grid">
+          <div class="manifest-row manifest-row--head">
+            <span>CORRIDOR</span><span>RÔLE</span><span>STATUT</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Côte d'Ivoire</span>
+            <span class="m-role">Base d'opérations — Abidjan</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Ghana</span>
+            <span class="m-role">Corridor portuaire régional</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Sénégal</span>
+            <span class="m-role">Hub Afrique de l'Ouest atlantique</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Nigeria</span>
+            <span class="m-role">Marché à fort volume</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Burkina Faso</span>
+            <span class="m-role">Corridor terrestre nord</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Mali</span>
+            <span class="m-role">Corridor terrestre intérieur</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+          <div class="manifest-row">
+            <span class="m-country">Chine</span>
+            <span class="m-role">Origine — sourcing &amp; export</span>
+            <span class="m-status m-status--active">Actif</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       VUE 4 — CONTACT
+       ========================================================= -->
+  <section class="view" id="view-contact" data-view="contact">
+    <div class="contact">
+      <div class="container contact-grid">
+        <div class="contact-intro">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>PARLONS DE VOTRE OPÉRATION</p>
+          <h2 class="section-title section-title--light">Une question&nbsp;?<br>Écrivez-nous directement.</h2>
+          <p class="contact-text">
+            Pour monter un dossier précis avec devis, utilisez plutôt notre
+            formulaire dédié. Pour toute autre question, nous sommes joignables
+            directement.
+          </p>
+
+          <div class="contact-details">
+            <a class="contact-row" href="tel:+2252721513835">
+              <span class="contact-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.5 2.3.8 3.6.8.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.3 2.5.8 3.6.2.3.1.7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </span>
+              <span>
+                <strong>+225 27 21 51 38 35</strong>
+                <small>+225 07 47 50 14 32</small>
+              </span>
+            </a>
+            <a class="contact-row" href="mailto:contact@athci.com">
+              <span class="contact-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </span>
+              <span><strong>contact@athci.com</strong></span>
+            </a>
+            <div class="contact-row">
+              <span class="contact-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.4 7-12a7 7 0 10-14 0c0 5.6 7 12 7 12z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+              <span><strong>Cocody Riviera 2</strong><small>Abidjan, Côte d'Ivoire</small></span>
+            </div>
+          </div>
+
+          <a href="#devis" data-route="devis" class="btn btn-ghost contact-cta-devis">Demander un devis détaillé <span class="arrow">→</span></a>
+        </div>
+
+        <form class="contact-form" id="contact-form-simple">
+          <label class="full">
+            <span>Nom complet</span>
+            <input type="text" name="name" placeholder="Votre nom" required>
+          </label>
+          <label class="full">
+            <span>E-mail</span>
+            <input type="email" name="email" placeholder="vous@entreprise.com" required>
+          </label>
+          <label class="full">
+            <span>Votre message</span>
+            <textarea name="message" rows="5" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span class="btn-text">Envoyer le message</span>
+          </button>
+          <p class="form-note" id="form-note-simple" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================================
+     VUE 6 — RÉALISATIONS
+     ========================================================= -->
+<section class="view" id="view-realisations" data-view="realisations">
+  <div class="page-hero page-hero--realisations">
+    <div class="container">
+      <p class="eyebrow"><span class="eyebrow-dot"></span>NOS MISSIONS SUR LE TERRAIN</p>
+      <h1 class="page-title">Ce que nous faisons,<br>en images.</h1>
+      <p class="page-sub">Photos et vidéos de nos opérations d'import-export, dédouanement et transport à travers l'Afrique de l'Ouest.</p>
+    </div>
+  </div>
+
+  <div class="container realisations-body">
+
+    <!-- FILTRES -->
+    <div class="real-filters">
+      <button class="real-filter is-active" data-filter="all">Tout</button>
+      <button class="real-filter" data-filter="photo">Photos</button>
+      <button class="real-filter" data-filter="video">Vidéos</button>
+    </div>
+
+    <!-- GRILLE MÉDIA -->
+    <div class="real-grid" id="real-grid">
+
+      <!-- CARTE VIDE — placeholder upload -->
+      <div class="real-card real-card--empty" data-type="photo">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Photo à venir</span>
+        </div>
+      </div>
+
+      <div class="real-card real-card--empty" data-type="video">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="2" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M17 9l5-3v12l-5-3V9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Vidéo à venir</span>
+        </div>
+      </div>
+
+      <div class="real-card real-card--empty" data-type="photo">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Photo à venir</span>
+        </div>
+      </div>
+
+      <div class="real-card real-card--empty" data-type="video">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="2" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M17 9l5-3v12l-5-3V9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Vidéo à venir</span>
+        </div>
+      </div>
+
+      <div class="real-card real-card--empty" data-type="photo">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Photo à venir</span>
+        </div>
+      </div>
+
+      <div class="real-card real-card--empty" data-type="photo">
+        <div class="real-empty-inner">
+          <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Photo à venir</span>
+        </div>
+      </div>
+
+    </div><!-- /real-grid -->
+
+    <p class="real-cta-note">Vous souhaitez ajouter des médias ? <a href="#contact" data-route="contact">Contactez-nous</a></p>
+
+  </div>
+</section>
+
+  <!-- =========================================================
+       VUE 5 — DEMANDER UN DEVIS
+       ========================================================= -->
+  <section class="view" id="view-devis" data-view="devis">
+    <div class="page-hero page-hero--devis">
+      <div class="container">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>DEMANDE DE DEVIS</p>
+        <h1 class="page-title">Décrivez votre opération.<br>Recevez une solution concrète.</h1>
+        <p class="page-sub">Plus votre dossier est précis, plus vite nous pouvons vous répondre avec un devis exploitable — pas une estimation type.</p>
+      </div>
+    </div>
+
+    <div class="container devis-body">
+      <form class="contact-form devis-form" id="contact-form">
+        <div class="form-row">
+          <label>
+            <span>Nom complet</span>
+            <input type="text" name="name" placeholder="Votre nom" required>
+          </label>
+          <label>
+            <span>Société</span>
+            <input type="text" name="company" placeholder="Nom de l'entreprise">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>E-mail</span>
+            <input type="email" name="email" placeholder="vous@entreprise.com" required>
+          </label>
+          <label>
+            <span>Téléphone</span>
+            <input type="tel" name="phone" placeholder="+225 ...">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Type d'opération</span>
+            <select name="type">
+              <option>Export</option>
+              <option>Import</option>
+              <option>Les deux / à définir</option>
+            </select>
+          </label>
+          <label>
+            <span>Corridor concerné</span>
+            <select name="corridor">
+              <option>Côte d'Ivoire</option>
+              <option>Ghana</option>
+              <option>Sénégal</option>
+              <option>Nigeria</option>
+              <option>Burkina Faso</option>
+              <option>Mali</option>
+              <option>Chine</option>
+              <option>Autre</option>
+            </select>
+          </label>
+        </div>
+        <label class="full">
+          <span>Décrivez votre opération</span>
+          <textarea name="message" rows="4" placeholder="Nature de la marchandise, volume, délais souhaités..."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary btn-full">
+          <span class="btn-text">Envoyer la demande</span>
+        </button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <a href="#accueil" data-route="accueil" class="brand brand--footer">
+      <img class="brand-logo brand-logo--footer" src="https://i.ibb.co/8n9sdjg2/ATH-CI-horizontal-blanc.png" alt="ATH CI — The Best Forwarder" width="900" height="333">
+    </a>
+    <nav class="footer-nav">
+      <a href="#accueil" data-route="accueil">Accueil</a>
+      <a href="#services" data-route="services">Services</a>
+      <a href="#apropos" data-route="apropos">Qui sommes-nous</a>
+      <a href="#realisations" data-route="realisations">Réalisations</a>
+      <a href="#contact" data-route="contact">Contact</a>
+      <a href="#devis" data-route="devis">Demander un devis</a>
+    </nav>
+  </div>
+  <div class="container footer-legal">
+    <p>
+      <strong>ATH CI</strong> — Athci SA, Abidjan &nbsp;·&nbsp;
+      RCCM&nbsp;CI-ABJ-03-2026-B15-00008 &nbsp;·&nbsp; 18 BP 2212 Abidjan 18
+    </p>
+    <p class="footer-copy">© <span id="year"></span> ATH CI — The Best Forwarder. Tous droits réservés.</p>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
