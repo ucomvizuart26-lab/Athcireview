@@ -2,6 +2,39 @@
 // ATH CI — SPA router + interactions
 // ===================================================================
 
+// SPLASH SCREEN
+(function() {
+  var splash = document.getElementById('splash');
+  var progress = document.getElementById('splash-progress');
+  var start = null;
+  var duration = 5000;
+  var circumference = 2 * Math.PI * 120;
+
+  var hero = document.querySelector('.hero');
+  var heroGrid = document.querySelector('.hero-grid');
+
+  function animateRing(ts) {
+    if (!start) start = ts;
+    var elapsed = ts - start;
+    var t = Math.min(elapsed / duration, 1);
+    var offset = circumference * (1 - t);
+    progress.setAttribute('stroke-dashoffset', offset);
+    if (t < 1) {
+      requestAnimationFrame(animateRing);
+    } else {
+      if (hero) hero.classList.add('hero-animate');
+      splash.style.transition = 'opacity 0.8s ease';
+      splash.style.opacity = '0';
+      setTimeout(function() {
+        splash.style.display = 'none';
+        if (heroGrid) heroGrid.classList.add('hero-animate');
+      }, 800);
+    }
+  }
+
+  requestAnimationFrame(animateRing);
+})();
+
 (function () {
 
   var ROUTES = ['accueil', 'services', 'apropos', 'contact', 'devis', 'realisations'];
@@ -46,7 +79,6 @@
 
   function renderRoute(route, opts) {
     opts = opts || {};
-
     Object.keys(views).forEach(function (key) {
       var el = views[key];
       if (!el) return;
@@ -56,16 +88,23 @@
         el.classList.remove('is-active');
       }
     });
-
     setActiveNav(route);
     document.title = routeTitle(route);
-
     if (!opts.skipScroll) {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
-
     closeMobileNav();
     initRevealFor(views[route]);
+
+    // Animation page-hero pour sections autres qu'accueil
+    setTimeout(function() {
+      var pageHero = views[route] ? views[route].querySelector('.page-hero') : null;
+      if (pageHero) {
+        pageHero.classList.remove('hero-animate');
+        void pageHero.offsetWidth;
+        pageHero.classList.add('hero-animate');
+      }
+    }, 50);
   }
 
   function routeTitle(route) {
@@ -93,9 +132,6 @@
     renderRoute(parseRoute());
   });
 
-  /* ---------------------------------------------------------------
-     INIT
-     --------------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', function () {
 
     var yearEl = document.getElementById('year');
@@ -103,7 +139,6 @@
 
     renderRoute(parseRoute(), { skipScroll: true });
 
-    /* mobile nav */
     var navToggle = document.getElementById('nav-toggle');
     var mainNav = document.getElementById('main-nav');
     var body = document.body;
@@ -132,7 +167,6 @@
       });
     }
 
-    /* animated packets travelling along hero routes (accueil view) */
     var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
     var packetsLayer = document.querySelector('.packets');
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -170,9 +204,7 @@
       });
     }
 
-    /* contact form — devis view */
     bindForm('contact-form', 'form-note');
-    /* contact form — contact view (simple message) */
     bindForm('contact-form-simple', 'form-note-simple');
 
     function bindForm(formId, noteId) {
@@ -207,7 +239,6 @@
       });
     }
 
-    /* sticky header shadow on scroll */
     var header = document.querySelector('.site-header');
     if (header) {
       window.addEventListener('scroll', function () {
@@ -215,7 +246,6 @@
       }, { passive: true });
     }
 
-    /* filtres réalisations */
     var filterBtns = document.querySelectorAll('.real-filter');
     var realCards = document.querySelectorAll('.real-card');
 
@@ -236,9 +266,6 @@
 
   });
 
-  /* ---------------------------------------------------------------
-     SCROLL REVEAL — re-bound each time a view becomes active
-     --------------------------------------------------------------- */
   var prefersReducedMotionGlobal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function initRevealFor(viewEl) {
