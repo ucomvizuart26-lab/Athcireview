@@ -2,6 +2,7 @@
 // ATH CI — SPA router + interactions
 // ===================================================================
 
+
 // SPLASH SCREEN
 (function() {
   var splash = document.getElementById('splash');
@@ -9,9 +10,15 @@
   var start = null;
   var duration = 5000;
   var circumference = 2 * Math.PI * 120;
-
   var hero = document.querySelector('.hero');
   var heroGrid = document.querySelector('.hero-grid');
+
+  // Crée un overlay noir par dessus tout
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:#000;z-index:99998;opacity:1;pointer-events:none;transition:opacity 0.8s ease;';
+  document.body.appendChild(overlay);
+
+  document.body.style.overflow = 'hidden';
 
   function animateRing(ts) {
     if (!start) start = ts;
@@ -22,18 +29,31 @@
     if (t < 1) {
       requestAnimationFrame(animateRing);
     } else {
-      if (hero) hero.classList.add('hero-animate');
-      splash.style.transition = 'opacity 0.8s ease';
+      // Boucle terminée — fondu du splash
+      splash.style.transition = 'opacity 0.5s ease';
       splash.style.opacity = '0';
+
       setTimeout(function() {
+        // Splash disparu — démarre les anims hero
         splash.style.display = 'none';
+        if (hero) hero.classList.add('hero-animate');
         if (heroGrid) heroGrid.classList.add('hero-animate');
-      }, 800);
+
+        // Fondu noir vers la page
+        setTimeout(function() {
+          overlay.style.opacity = '0';
+          document.body.style.overflow = '';
+          setTimeout(function() {
+            overlay.remove();
+          }, 800);
+        }, 100);
+      }, 500);
     }
   }
 
   requestAnimationFrame(animateRing);
 })();
+
 
 (function () {
 
