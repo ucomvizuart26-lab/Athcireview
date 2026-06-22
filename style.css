@@ -698,39 +698,54 @@ a.contact-row:hover{ transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce){ .view.is-active{ animation: none; } }
 .main-nav a.is-active{ color: var(--navy); }
 
-/* =========================================================
+/* /* =========================================================
    TEASER CARDS
    ========================================================= */
 .teaser { background: #fff; padding: 64px 0 80px; border-top: 1px solid var(--line); }
 .teaser-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .teaser-card {
   background: #fff;
-  border: 1px solid rgba(16,19,26,0.14);
+  border: 1px solid rgba(16,19,26,0.10);
   border-radius: 10px;
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
-.teaser-card:hover,
-.teaser-card:focus {
-  background: #fff !important;
-  border-color: rgba(34,113,180,0.6) !important;
-  box-shadow: 0 4px 24px rgba(34,113,180,0.15), 0 0 0 1px rgba(34,113,180,0.3) !important;
-  transform: scale(1.025) !important;
+.teaser-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.teaser-card:hover {
+  box-shadow: 0 12px 40px rgba(27,58,107,0.10);
+  transform: translateY(-4px);
+  border-color: rgba(16,19,26,0.06);
+}
+.teaser-card:hover::after {
+  width: 100%;
 }
 .teaser-ico { width: 42px; height: 42px; border-radius: 50%; background: var(--paper-dim); display: flex; align-items: center; justify-content: center; color: var(--green-deep); }
 .teaser-ico svg { width: 20px; height: 20px; }
 .teaser-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--navy); margin: 0; }
 .teaser-card p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; flex-grow: 1; }
 .teaser-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--green-deep); }
-.teaser-link .arrow { transition: transform 0.2s var(--ease); }
-.teaser-card:hover .teaser-link .arrow { transform: translateX(4px); }
+.teaser-link .arrow { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.teaser-card:hover .teaser-link .arrow { transform: translateX(6px); }
 
 @media (max-width: 1024px) { .teaser-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .teaser-grid { grid-template-columns: 1fr; } .teaser-card { padding: 24px 20px; } }
+
 
 /* =========================================================
    DEVIS
