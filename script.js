@@ -40,7 +40,6 @@
   var ROUTES = ['accueil', 'services', 'apropos', 'contact', 'devis', 'realisations'];
   var DEFAULT_ROUTE = 'accueil';
 
-  var app = document.getElementById('app');
   var views = {};
   ROUTES.forEach(function (r) {
     views[r] = document.getElementById('view-' + r);
@@ -62,6 +61,7 @@
 
   function parseRoute() {
     var hash = window.location.hash.replace('#', '').trim();
+    if (!hash) return DEFAULT_ROUTE;
     return ROUTES.indexOf(hash) !== -1 ? hash : DEFAULT_ROUTE;
   }
 
@@ -79,6 +79,7 @@
 
   function renderRoute(route, opts) {
     opts = opts || {};
+
     Object.keys(views).forEach(function (key) {
       var el = views[key];
       if (!el) return;
@@ -88,15 +89,29 @@
         el.classList.remove('is-active');
       }
     });
+
     setActiveNav(route);
     document.title = routeTitle(route);
+
     if (!opts.skipScroll) {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
+
     closeMobileNav();
     initRevealFor(views[route]);
+    
+    // Reset animations contact
+var contactIntro = document.querySelector('.contact-intro');
+var contactForm = document.querySelector('#contact-form-simple');
+if (contactIntro) {
+  contactIntro.classList.remove('is-visible', 'reveal');
+  void contactIntro.offsetWidth;
+}
+if (contactForm) {
+  contactForm.classList.remove('is-visible', 'reveal');
+  void contactForm.offsetWidth;
+}
 
-    // Animation page-hero pour sections autres qu'accueil
     setTimeout(function() {
       var pageHero = views[route] ? views[route].querySelector('.page-hero') : null;
       if (pageHero) {
@@ -137,6 +152,10 @@
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+    // Force accueil au démarrage sur mobile
+    if (!window.location.hash) {
+      window.location.hash = 'accueil';
+    }
     renderRoute(parseRoute(), { skipScroll: true });
 
     var navToggle = document.getElementById('nav-toggle');
@@ -144,6 +163,7 @@
     var body = document.body;
 
     function openMobileNav() {
+      if (!mainNav || !navToggle) return;
       mainNav.classList.add('open');
       navToggle.classList.add('open');
       navToggle.setAttribute('aria-expanded', 'true');

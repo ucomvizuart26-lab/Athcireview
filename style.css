@@ -431,6 +431,11 @@ button{ font-family: inherit; }
 }
 .services-body { background: var(--paper); padding: 64px 0 96px; }
 
+.page-hero--devis .page-hero-inner {
+  text-align: center;
+  align-items: center;
+}
+
 @media (max-width: 880px) {
   .page-hero-inner { padding: 48px 24px; }
   .page-hero-img-right { display: none; }
@@ -737,6 +742,25 @@ a.contact-row:hover{ transform: translateX(3px); }
 .reveal{ opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.is-visible{ opacity: 1; transform: translateY(0); }
 
+.contact-intro {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-form {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.contact-intro.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.contact-form.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* =========================================================
    RÉALISATIONS
    ========================================================= */
@@ -794,9 +818,68 @@ a.contact-row:hover{ transform: translateX(3px); }
   from { opacity: 0; transform: translateX(40px); }
   to { opacity: 1; transform: translateX(0); }
 }
+.page-hero-inner {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.page-hero-img-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
 .page-hero.hero-animate .page-hero-inner {
   animation: hero-text-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
 }
 .page-hero.hero-animate .page-hero-img-right {
   animation: hero-map-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+}
+
+/* =========================================================
+   RESPONSIVE MOBILE GLOBAL
+   ========================================================= */
+@media (max-width: 540px) {
+  /* Header */
+  .header-inner { padding: 12px 16px; }
+  .brand-logo { height: 32px; }
+
+  /* Hero accueil */
+  .hero { padding: 48px 0 0; }
+  .hero-inner { padding: 24px 20px 48px; }
+  .hero-title { font-size: clamp(26px, 8vw, 36px); }
+  .hero-sub { font-size: 14px; }
+  .hero-map { display: none; }
+  .trust-flags { gap: 10px; font-size: 12px; }
+  .trust-label { font-size: 10px; }
+
+  /* Page hero */
+  .page-hero-inner { padding: 36px 20px; }
+  .page-title { font-size: clamp(22px, 7vw, 32px); }
+  .page-sub { font-size: 14px; }
+
+  /* Apropos */
+  .apropos-body { padding: 40px 20px 60px; gap: 32px; }
+  .why-list--standalone { padding: 0; }
+  .apropos-stats { grid-template-columns: 1fr 1fr; padding: 0; gap: 16px; }
+  .astat-num { font-size: 34px; }
+  .astat-card { padding: 20px 16px; }
+
+  /* Network */
+  .network { padding: 48px 0; }
+
+  /* Contact */
+  .contact { padding: 48px 0; }
+  .contact-form { padding: 20px 16px; }
+
+  /* Teaser */
+  .teaser { padding: 40px 0 60px; }
+
+  /* Réalisations */
+  .realisations-body { padding: 32px 0 60px; }
+
+  /* Devis */
+  .devis-body { padding: 32px 0 60px; }
+  .devis-form { padding: 0 16px; }
+
+  /* Footer */
+  .footer-legal { padding: 16px 20px; font-size: 11px; }
 }
