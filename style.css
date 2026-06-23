@@ -208,8 +208,8 @@ button{ font-family: inherit; }
 /* Desktop seulement — image services */
 @media (min-width: 881px) {
   .page-hero--services .page-hero-img-right {
-    width: 50%;
-    bottom: -35px;
+    width: 60%;  
+    bottom: -50px;
     overflow: visible;
   }
 }
@@ -543,12 +543,14 @@ a.contact-row:hover{ transform: translateX(3px); }
   .page-hero-img-right img { height: 100%; width: auto; max-height: 260px; object-fit: contain; object-position: bottom center; }
 
   /* IMAGE SERVICES MOBILE */
-  .page-hero--services .page-hero-img-right {
-    height: 157px;       /* hauteur du conteneur — touche si le hero est trop allongé */
-    overflow: visible;
-  }
+ .page-hero--services .page-hero-img-right {
+  height: 226px;
+  overflow: visible;
+  padding-top: 0px;
+  padding-bottom: 3px;
+}
   .page-hero--services .page-hero-img-right img {
-    height: 700px;       /* taille de la dame — augmente pour agrandir, diminue pour réduire */
+    height: 900px;       /* taille de la dame — augmente pour agrandir, diminue pour réduire */
     width: auto;
     object-fit: contain;
     object-position: bottom center;
