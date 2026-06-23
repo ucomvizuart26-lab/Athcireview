@@ -208,8 +208,8 @@ button{ font-family: inherit; }
 /* Desktop seulement — image services */
 @media (min-width: 881px) {
   .page-hero--services .page-hero-img-right {
-    width: 60%;  
-    bottom: -50px;
+    width: 55%;  
+    bottom: -20px;
     overflow: visible;
   }
 }
