@@ -164,49 +164,6 @@
     renderRoute(parseRoute());
   });
 
- // NAV TOGGLE — solution définitive
-window.addEventListener('load', function() {
-  var navToggle = document.getElementById('nav-toggle');
-  var mainNav = document.getElementById('main-nav');
-  var body = document.body;
-
-  if (!navToggle || !mainNav) return;
-
-  navToggle.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var isOpen = mainNav.classList.contains('open');
-    if (isOpen) { closeMobileNav(); } else { openMobileNav(); }
-  }, { passive: false });
-
-  navToggle.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var isOpen = mainNav.classList.contains('open');
-    if (isOpen) { closeMobileNav(); } else { openMobileNav(); }
-  }, true);
-
-  body.addEventListener('touchend', function(e) {
-    if (body.classList.contains('nav-open') &&
-        !mainNav.contains(e.target) &&
-        !navToggle.contains(e.target)) {
-      closeMobileNav();
-    }
-  }, { passive: true });
-
-  body.addEventListener('click', function(e) {
-    if (body.classList.contains('nav-open') &&
-        !mainNav.contains(e.target) &&
-        !navToggle.contains(e.target)) {
-      closeMobileNav();
-    }
-  });
-
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeMobileNav();
-  });
-});
-
   document.addEventListener('DOMContentLoaded', function () {
 
     var yearEl = document.getElementById('year');
@@ -216,6 +173,27 @@ window.addEventListener('load', function() {
       window.location.hash = 'accueil';
     }
     renderRoute(parseRoute(), { skipScroll: true });
+
+    // BURGER MENU
+    if (navToggle && mainNav) {
+      navToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = mainNav.classList.contains('open');
+        if (isOpen) { closeMobileNav(); } else { openMobileNav(); }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (body.classList.contains('nav-open') &&
+            !mainNav.contains(e.target) &&
+            !navToggle.contains(e.target)) {
+          closeMobileNav();
+        }
+      });
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMobileNav();
+      });
+    }
 
     // PACKETS ANIMATION
     var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
@@ -314,33 +292,32 @@ window.addEventListener('load', function() {
       });
     });
 
-  // CUSTOM SELECT
-document.querySelectorAll('.custom-select').forEach(function(select) {
-  var trigger = select.querySelector('.custom-select-trigger');
-  var options = select.querySelectorAll('.custom-option');
-  var input = select.querySelector('input[type="hidden"]');
+    // CUSTOM SELECT
+    document.querySelectorAll('.custom-select').forEach(function(select) {
+      var trigger = select.querySelector('.custom-select-trigger');
+      var options = select.querySelectorAll('.custom-option');
+      var input = select.querySelector('input[type="hidden"]');
 
-  trigger.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.querySelectorAll('.custom-select.open').forEach(function(s) {
-      if (s !== select) s.classList.remove('open');
-    });
-    select.classList.toggle('open');
-  }, true);
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.custom-select.open').forEach(function(s) {
+          if (s !== select) s.classList.remove('open');
+        });
+        select.classList.toggle('open');
+      });
 
-  options.forEach(function(option) {
-    option.addEventListener('click', function(e) {
-      e.stopPropagation();
-      options.forEach(function(o) { o.classList.remove('selected'); });
-      option.classList.add('selected');
-      trigger.textContent = option.textContent;
-      trigger.classList.remove('placeholder');
-      input.value = option.getAttribute('data-value');
-      select.classList.remove('open');
+      options.forEach(function(option) {
+        option.addEventListener('click', function(e) {
+          e.stopPropagation();
+          options.forEach(function(o) { o.classList.remove('selected'); });
+          option.classList.add('selected');
+          trigger.textContent = option.textContent;
+          trigger.classList.remove('placeholder');
+          input.value = option.getAttribute('data-value');
+          select.classList.remove('open');
+        });
+      });
     });
-  });
-});
 
     document.addEventListener('click', function() {
       document.querySelectorAll('.custom-select.open').forEach(function(s) {
