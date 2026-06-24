@@ -120,6 +120,12 @@
             <path id="r2" class="route" d="M455 272 Q462 268 470 265" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
             <path id="r3" class="route" d="M455 272 Q473 256 492 240" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
             <path id="r6" class="route" d="M455 272 Q647 225 840 179" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
+           <!-- Route vers France -->
+<path id="r7" class="route" d="M455 272 Q462 193 470 115" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
+<!-- Route vers USA -->
+<path id="r8" class="route" d="M455 272 Q335 218 215 165" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
+<!-- Route vers Canada -->
+<path id="r9" class="route" d="M455 272 Q332 203 210 135" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
 
             <g class="nodes">
               <circle class="node-glow" cx="415" cy="230" r="16" fill="url(#dotGlow)"/>
@@ -137,6 +143,15 @@
               <circle class="node-glow" cx="455" cy="272" r="30" fill="url(#abiGlow)"/>
               <circle cx="455" cy="272" r="11" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.35"/>
               <circle class="node-dot node-main" cx="455" cy="272" r="6" fill="#FFFFFF"/>
+              <!-- France -->
+<circle class="node-glow" cx="470" cy="115" r="16" fill="url(#dotGlow)"/>
+<circle cx="470" cy="115" r="4" fill="#32A959"/>
+<!-- USA -->
+<circle class="node-glow" cx="215" cy="165" r="16" fill="url(#dotGlow)"/>
+<circle cx="215" cy="165" r="4" fill="#32A959"/>
+<!-- Canada -->
+<circle class="node-glow" cx="210" cy="135" r="16" fill="url(#dotGlow)"/>
+<circle cx="210" cy="135" r="4" fill="#32A959"/>
             </g>
 
             <g class="packets"></g>
@@ -148,21 +163,24 @@
     <div class="trust-strip">
       <div class="container trust-inner">
         <span class="trust-label">PRÉSENCE &amp; CORRIDORS ACTIFS</span>
-        <div class="trust-flags">
-          <span>Côte d'Ivoire</span>
-          <span>Ghana</span>
-          <span>Sénégal</span>
-          <span>Nigeria</span>
-          <span>Burkina Faso</span>
-          <span>Mali</span>
-          <span>Chine</span>
-        </div>
+       <div class="trust-flags">
+  <span>Côte d'Ivoire</span>
+  <span>Ghana</span>
+  <span>Sénégal</span>
+  <span>Nigeria</span>
+  <span>Burkina Faso</span>
+  <span>Mali</span>
+  <span>Chine</span>
+  <span>France</span>
+  <span>Canada</span>
+  <span>États-Unis</span>
+</div>
       </div>
     </div>
 
     <div class="teaser">
       <div class="container teaser-grid">
-        <a href="#services" data-route="services" class="teaser-card">
+        <a href="#services" data-route="services" class="teaser-card teaser-card--prestations">
           <span class="teaser-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M3 16l4-8 4 4 4-9 6 13H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </span>
@@ -170,7 +188,7 @@
           <p>Export, import et accompagnement sur mesure dans tout le corridor ouest-africain.</p>
           <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
         </a>
-        <a href="#apropos" data-route="apropos" class="teaser-card">
+        <a href="#apropos" data-route="apropos" class="teaser-card teaser-card--apropos">
           <span class="teaser-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
@@ -178,7 +196,7 @@
           <p>Notre méthode de travail, nos engagements et notre présence régionale.</p>
           <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
         </a>
-        <a href="#realisations" data-route="realisations" class="teaser-card">
+       <a href="#realisations" data-route="realisations" class="teaser-card teaser-card--realisations">
           <span class="teaser-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </span>
@@ -186,7 +204,7 @@
           <p>Photos et vidéos de nos opérations sur le terrain à travers l'Afrique de l'Ouest.</p>
           <span class="teaser-link">Découvrir <span class="arrow">→</span></span>
         </a>
-        <a href="#contact" data-route="contact" class="teaser-card">
+       <a href="#contact" data-route="contact" class="teaser-card teaser-card--contact">
           <span class="teaser-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </span>
@@ -206,7 +224,7 @@
       <div class="page-hero-inner">
         <p class="eyebrow"><span class="eyebrow-dot"></span>NOS DOMAINES D'INTERVENTION</p>
         <h1 class="page-title">Deux sens de circulation.<br>Une seule exigence&nbsp;:<br><strong class="hero-title-accent">la maîtrise.</strong></h1>
-        <p class="page-sub">Au-delà du transit, une expertise sectorielle. ATH CI accompagne des opérateurs actifs dans des filières à fortes contraintes logistiques : exportation de noix de cajou brute et de caoutchouc naturel vers les marchés internationaux, importation de véhicules utilitaires et de voitures particulières. Chaque filière a ses délais, ses normes et ses exigences documentaires — nous les connaissons, et nous les gérons.</p>
+       <p class="page-sub">Au-delà du transit, une expertise sectorielle. ATH CI accompagne des opérateurs actifs dans des filières à fortes contraintes logistiques : exportation de noix de cajou brute et de caoutchouc naturel vers les marchés internationaux, importation de véhicules utilitaires et de voitures particulières en provenance de France, du Canada et des États-Unis — de la mise en FOB dans le pays d'origine jusqu'au dédouanement à Abidjan. Chaque filière a ses délais, ses normes et ses exigences documentaires — nous les connaissons, et nous les gérons.</p>
       </div>
       <div class="page-hero-img-right">
         <img src="https://i.ibb.co/jkw0Mqyt/hero-services.png" alt="Services ATH CI">
@@ -366,46 +384,61 @@
           <h2 class="section-title section-title--light">ATH CI opère dans les hubs qui font<br class="br-desktop">bouger vos marchandises.</h2>
           <p class="network-sub">Ports, aéroports et corridors terrestres&nbsp;: nous facilitons vos flux commerciaux entre la Chine et les principaux marchés ouest-africains.</p>
         </div>
-        <div class="manifest-grid">
-          <div class="manifest-row manifest-row--head">
-            <span>CORRIDOR</span><span>RÔLE</span><span>STATUT</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇨🇮 Côte d'Ivoire</span>
-            <span class="m-role">Base d'opérations — Abidjan</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇬🇭 Ghana</span>
-            <span class="m-role">Corridor portuaire régional</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇸🇳 Sénégal</span>
-            <span class="m-role">Hub Afrique de l'Ouest atlantique</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇳🇬 Nigeria</span>
-            <span class="m-role">Marché à fort volume</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇧🇫 Burkina Faso</span>
-            <span class="m-role">Corridor terrestre nord</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇲🇱 Mali</span>
-            <span class="m-role">Corridor terrestre intérieur</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-          <div class="manifest-row">
-            <span class="m-country">🇨🇳 Chine</span>
-            <span class="m-role">Origine — sourcing &amp; export</span>
-            <span class="m-status m-status--active">Actif</span>
-          </div>
-        </div>
+       <div class="manifest-grid">
+  <div class="manifest-row manifest-row--head">
+    <span>CORRIDOR</span><span>RÔLE</span><span>STATUT</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇨🇮 Côte d'Ivoire</span>
+    <span class="m-role">Base d'opérations — Abidjan</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇬🇭 Ghana</span>
+    <span class="m-role">Corridor portuaire régional</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇸🇳 Sénégal</span>
+    <span class="m-role">Hub Afrique de l'Ouest atlantique</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇳🇬 Nigeria</span>
+    <span class="m-role">Marché à fort volume</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇧🇫 Burkina Faso</span>
+    <span class="m-role">Corridor terrestre nord</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇲🇱 Mali</span>
+    <span class="m-role">Corridor terrestre intérieur</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+  <span class="m-country">🇨🇳 Chine</span>
+  <span class="m-role">Origine — sourcing, import &amp; export</span>
+  <span class="m-status m-status--active">Actif</span>
+</div>
+  <div class="manifest-row">
+    <span class="m-country">🇫🇷 France</span>
+    <span class="m-role">Origine — importation de véhicules</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇨🇦 Canada</span>
+    <span class="m-role">Origine — importation de véhicules</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+  <div class="manifest-row">
+    <span class="m-country">🇺🇸 États-Unis</span>
+    <span class="m-role">Origine — importation de véhicules</span>
+    <span class="m-status m-status--active">Actif</span>
+  </div>
+</div>
       </div>
     </div>
   </section>
@@ -580,7 +613,7 @@
 </label>
 <label>
   <span>Corridor concerné</span>
-  <div class="custom-select" id="select-corridor">
+ <div class="custom-select" id="select-corridor">
     <div class="custom-select-trigger placeholder">Sélectionner...</div>
     <div class="custom-select-options">
       <div class="custom-option" data-value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</div>
@@ -590,10 +623,13 @@
       <div class="custom-option" data-value="Burkina Faso">🇧🇫 Burkina Faso</div>
       <div class="custom-option" data-value="Mali">🇲🇱 Mali</div>
       <div class="custom-option" data-value="Chine">🇨🇳 Chine</div>
+      <div class="custom-option" data-value="France">🇫🇷 France</div>
+      <div class="custom-option" data-value="Canada">🇨🇦 Canada</div>
+      <div class="custom-option" data-value="États-Unis">🇺🇸 États-Unis</div>
       <div class="custom-option" data-value="Autre">🌍 Autre</div>
     </div>
     <input type="hidden" name="corridor" value="">
-  </div>
+</div>
 </label>
         </div>
         <label class="full">

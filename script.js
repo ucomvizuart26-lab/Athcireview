@@ -275,42 +275,82 @@
       });
     }
 
-    // -------------------------------------------------------
-    // PACKETS ANIMATION
-    // -------------------------------------------------------
-    var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
-    var packetsLayer = document.querySelector('.packets');
-    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// PACKETS ANIMATION
+var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9'];
+var packetsLayer = document.querySelector('.packets');
+var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (packetsLayer && !prefersReducedMotion) {
-      routeIds.forEach(function (id, idx) {
-        var path = document.getElementById(id);
-        if (!path) return;
-        var len = path.getTotalLength();
+if (packetsLayer && !prefersReducedMotion) {
+  routeIds.forEach(function (id, idx) {
+    var path = document.getElementById(id);
+    if (!path) return;
+    var len = path.getTotalLength();
 
-        var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dot.setAttribute('r', '3');
-        dot.setAttribute('fill', '#ffffff');
-        dot.style.filter = 'drop-shadow(0 0 4px rgba(255,255,255,0.85))';
-        packetsLayer.appendChild(dot);
+    var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('r', '3');
+    dot.setAttribute('fill', '#ffffff');
+    dot.style.filter = 'drop-shadow(0 0 4px rgba(255,255,255,0.85))';
+    packetsLayer.appendChild(dot);
 
-        var duration = 3200 + idx * 550;
-        var delay = idx * 480;
-        var startTime = null;
+    var tripDuration = 4000 + idx * 400;
+    var pauseDuration = 2000;
+    var fadeDuration = 400; // durée du fondu en ms
+    var cycleDuration = (tripDuration + pauseDuration) * 2;
+    var delay = idx * 700;
+    var startTime = null;
 
-        function frame(ts) {
-          if (startTime === null) startTime = ts;
-          var elapsed = ts - startTime - delay;
-          if (elapsed < 0) { requestAnimationFrame(frame); return; }
-          var t = (elapsed % duration) / duration;
-          var point = path.getPointAtLength(t * len);
-          dot.setAttribute('cx', point.x);
-          dot.setAttribute('cy', point.y);
-          requestAnimationFrame(frame);
+    function frame(ts) {
+      if (startTime === null) startTime = ts;
+      var elapsed = ts - startTime - delay;
+      if (elapsed < 0) { requestAnimationFrame(frame); return; }
+
+      var cyclePos = elapsed % cycleDuration;
+      var t = 0;
+      var opacity = 1;
+
+      if (cyclePos < tripDuration) {
+        // Aller
+        t = cyclePos / tripDuration;
+        // Apparition au départ
+        if (cyclePos < fadeDuration) {
+          opacity = cyclePos / fadeDuration;
         }
-        requestAnimationFrame(frame);
-      });
+        // Disparition à l'arrivée
+        else if (cyclePos > tripDuration - fadeDuration) {
+          opacity = (tripDuration - cyclePos) / fadeDuration;
+        }
+      } else if (cyclePos < tripDuration + pauseDuration) {
+        // Pause à destination — invisible
+        t = 1;
+        opacity = 0;
+      } else if (cyclePos < tripDuration * 2 + pauseDuration) {
+        // Retour
+        var retourPos = cyclePos - tripDuration - pauseDuration;
+        t = 1 - retourPos / tripDuration;
+        // Apparition au départ du retour
+        if (retourPos < fadeDuration) {
+          opacity = retourPos / fadeDuration;
+        }
+        // Disparition à l'arrivée du retour
+        else if (retourPos > tripDuration - fadeDuration) {
+          opacity = (tripDuration - retourPos) / fadeDuration;
+        }
+      } else {
+        // Pause à l'origine — invisible
+        t = 0;
+        opacity = 0;
+      }
+
+      var point = path.getPointAtLength(t * len);
+      dot.setAttribute('cx', point.x);
+      dot.setAttribute('cy', point.y);
+      dot.setAttribute('opacity', opacity);
+      requestAnimationFrame(frame);
     }
+
+    requestAnimationFrame(frame);
+  });
+}
 
     // -------------------------------------------------------
     // FORMS
@@ -393,58 +433,145 @@
 
   });
 
-  // -------------------------------------------------------
-  // SWIPE NAVIGATION MOBILE
-  // -------------------------------------------------------
-  var touchStartX = 0;
-  var touchEndX = 0;
-  var swipeThreshold = 80;
+ // -------------------------------------------------------
+// SWIPE NAVIGATION MOBILE — FLUIDE
+// -------------------------------------------------------
+var touchStartX = 0;
+var touchCurrentX = 0;
+var isSwiping = false;
+var swipeThreshold = 60;
+var currentView = null;
+var nextView = null;
+var direction = null;
 
-  document.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
+document.addEventListener('touchstart', function(e) {
+  if (e.target.closest('.custom-select') || e.target.closest('.main-nav')) return;
+  touchStartX = e.changedTouches[0].screenX;
+  touchCurrentX = touchStartX;
+  isSwiping = false;
 
-  document.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
+  currentView = document.querySelector('.view.is-active');
+  var currentRoute = parseRoute();
+  var currentIndex = ROUTES.indexOf(currentRoute);
 
-  function handleSwipe() {
-    var diff = touchStartX - touchEndX;
-    if (Math.abs(diff) < swipeThreshold) return;
+  var diff = 0;
+  direction = null;
+  nextView = null;
 
-    var currentRoute = parseRoute();
-    var currentIndex = ROUTES.indexOf(currentRoute);
-    var targetRoute = null;
-    var direction = null;
+  currentView.style.transition = 'none';
+  currentView.style.transform = 'translateX(0)';
+}, { passive: true });
 
-    if (diff > 0) {
-      var nextIndex = currentIndex + 1;
-      if (nextIndex < ROUTES.length) {
-        targetRoute = ROUTES[nextIndex];
-        direction = 'right';
-      }
-    } else {
-      var prevIndex = currentIndex - 1;
-      if (prevIndex >= 0) {
-        targetRoute = ROUTES[prevIndex];
-        direction = 'left';
+document.addEventListener('touchmove', function(e) {
+  if (!currentView) return;
+  touchCurrentX = e.changedTouches[0].screenX;
+  var diff = touchCurrentX - touchStartX;
+
+  if (Math.abs(diff) < 8) return;
+  isSwiping = true;
+
+  var currentRoute = parseRoute();
+  var currentIndex = ROUTES.indexOf(currentRoute);
+
+  if (diff < 0 && currentIndex < ROUTES.length - 1) {
+    direction = 'left';
+    if (!nextView) {
+      nextView = document.getElementById('view-' + ROUTES[currentIndex + 1]);
+      if (nextView) {
+        nextView.style.display = 'block';
+        nextView.style.transition = 'none';
+        nextView.style.transform = 'translateX(100%)';
       }
     }
-
-    if (!targetRoute) return;
-
-    navigateTo(targetRoute);
-
-    setTimeout(function() {
-      var activeView = document.querySelector('.view.is-active');
-      if (activeView) {
-        activeView.classList.add(direction === 'right' ? 'swipe-enter-right' : 'swipe-enter-left');
-        setTimeout(function() {
-          activeView.classList.remove('swipe-enter-right', 'swipe-enter-left');
-        }, 500);
+  } else if (diff > 0 && currentIndex > 0) {
+    direction = 'right';
+    if (!nextView) {
+      nextView = document.getElementById('view-' + ROUTES[currentIndex - 1]);
+      if (nextView) {
+        nextView.style.display = 'block';
+        nextView.style.transition = 'none';
+        nextView.style.transform = 'translateX(-100%)';
       }
-    }, 10);
+    }
   }
+
+  if (nextView) {
+    var pct = diff / window.innerWidth;
+    currentView.style.transform = 'translateX(' + (diff) + 'px)';
+    nextView.style.transform = 'translateX(' + (diff + (direction === 'left' ? window.innerWidth : -window.innerWidth)) + 'px)';
+  }
+}, { passive: true });
+
+document.addEventListener('touchend', function(e) {
+  if (!currentView || !isSwiping) return;
+  var diff = touchCurrentX - touchStartX;
+  var absDiff = Math.abs(diff);
+
+  if (absDiff > swipeThreshold && nextView) {
+    var targetRoute = null;
+    var currentRoute = parseRoute();
+    var currentIndex = ROUTES.indexOf(currentRoute);
+
+    if (direction === 'left' && currentIndex < ROUTES.length - 1) {
+      targetRoute = ROUTES[currentIndex + 1];
+    } else if (direction === 'right' && currentIndex > 0) {
+      targetRoute = ROUTES[currentIndex - 1];
+    }
+
+    if (targetRoute) {
+      var ease = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      currentView.style.transition = 'transform 0.3s ' + ease;
+      nextView.style.transition = 'transform 0.3s ' + ease;
+
+      currentView.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+      nextView.style.transform = 'translateX(0)';
+
+      setTimeout(function() {
+        // Nettoyer les styles
+        currentView.style.transition = '';
+        currentView.style.transform = '';
+        currentView.style.display = '';
+        if (nextView) {
+          nextView.style.transition = '';
+          nextView.style.transform = '';
+        }
+        navigateTo(targetRoute);
+        currentView = null;
+        nextView = null;
+        isSwiping = false;
+        direction = null;
+      }, 300);
+    } else {
+      resetSwipe();
+    }
+  } else {
+    resetSwipe();
+  }
+}, { passive: true });
+
+function resetSwipe() {
+  if (currentView) {
+    currentView.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    currentView.style.transform = 'translateX(0)';
+  }
+  if (nextView) {
+    nextView.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    nextView.style.transform = direction === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
+    setTimeout(function() {
+      if (nextView) {
+        nextView.style.display = '';
+        nextView.style.transition = '';
+        nextView.style.transform = '';
+        nextView = null;
+      }
+      if (currentView) {
+        currentView.style.transition = '';
+        currentView = null;
+      }
+      isSwiping = false;
+      direction = null;
+    }, 300);
+  }
+}
 
 })();

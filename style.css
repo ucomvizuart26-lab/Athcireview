@@ -187,6 +187,11 @@ button{ font-family: inherit; }
 }
 .page-hero::after { display: none; }
 .page-hero--apropos::before { background-image: none; }
+.page-hero--services::before {
+  background-image: url('https://i.ibb.co/VYY63B9W/hevea-cajou.jpg');
+  background-size: cover;
+  background-position: center center;
+}
 .page-hero--apropos .page-hero-img-right img { max-height: 450px; }
 .page-hero--realisations::before {
   background-image: url('https://i.ibb.co/Mkt4nRVP/dokers-athci.jpg');
@@ -202,8 +207,7 @@ button{ font-family: inherit; }
 .page-hero--realisations .page-hero-img-right img { max-height: 520px; }
 .page-hero--devis .page-hero-inner { text-align: center; align-items: center; }
 .page-title { font-family: var(--font-display); font-size: clamp(26px, 4.6vw, 48px); line-height: 1.14; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 18px; max-width: 600px; }
-.page-sub { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 580px; margin: 0; }
-.services-body { background: var(--paper); padding: 64px 0 96px; }
+.page-sub { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 480px; margin: 0; }
 
 /* Desktop seulement — image services */
 @media (min-width: 881px) {
@@ -374,21 +378,41 @@ a.contact-row:hover{ transform: translateX(3px); }
 .teaser { background: #fff; padding: 64px 0 80px; border-top: 1px solid var(--line); }
 .teaser-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .teaser-card {
-  background: #fff;
-  border: 1px solid rgba(16,19,26,0.10);
+  position: relative;
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 60%, #1c4a78 100%);
+  border: none;
   border-radius: 10px;
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  transition: filter 0.4s var(--ease), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.teaser-card:hover { border-color: rgba(50,169,89,0.5); box-shadow: 0 0 0 1px rgba(50,169,89,0.3); background: rgba(50,169,89,0.04); }
-.teaser-ico { width: 42px; height: 42px; border-radius: 50%; background: var(--paper-dim); display: flex; align-items: center; justify-content: center; color: var(--green-deep); }
+.teaser-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  filter: grayscale(100%) brightness(0.4);
+  mix-blend-mode: luminosity;
+  z-index: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.teaser-card--prestations::before { background-image: url('https://i.ibb.co/VYY63B9W/hevea-cajou.jpg'); }
+.teaser-card--apropos::before { background-image: url('https://i.ibb.co/R44WPKs8/bureauathci.png'); }
+.teaser-card--realisations::before { background-image: url('https://i.ibb.co/Mkt4nRVP/dokers-athci.jpg'); }
+.teaser-card--contact::before { background-image: url('https://i.ibb.co/Y4R1CkKD/port-athci.png'); }
+.teaser-grid:hover .teaser-card:hover { filter: brightness(1.15); transform: scale(1.03); }
+.teaser-card:hover::before { opacity: 0.28; }
+.teaser-ico { position: relative; z-index: 1; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: #fff; }
 .teaser-ico svg { width: 20px; height: 20px; }
-.teaser-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--navy); margin: 0; }
-.teaser-card p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; flex-grow: 1; }
-.teaser-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--green-deep); }
+.teaser-card h3 { position: relative; z-index: 1; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #fff; margin: 0; }
+.teaser-card p { position: relative; z-index: 1; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; flex-grow: 1; }
+.teaser-link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--green); }
 .teaser-link .arrow { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 .teaser-card:hover .teaser-link .arrow { transform: translateX(6px); }
 
