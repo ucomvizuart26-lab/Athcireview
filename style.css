@@ -255,6 +255,7 @@ button{ font-family: inherit; }
 .service-link{ margin-top: auto; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--navy); }
 .service-link .arrow{ transition: transform 0.2s var(--ease); }
 .service-link:hover .arrow{ transform: translateX(4px); }
+.services-body { background: var(--paper); padding: 64px 0 120px; }
 @media (max-width: 920px){ .service-grid{ grid-template-columns: 1fr; } }
 @media (max-width: 540px){ .service-card{ padding: 28px 20px; } }
 
@@ -353,7 +354,7 @@ a.contact-row:hover{ transform: translateX(3px); }
 /* =========================================================
    FOOTER
    ========================================================= */
-.site-footer { background: var(--ink); color: rgba(255,255,255,0.7); padding: 56px 0 28px; }
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.7); padding: 32px 0 28px; }
 .footer-top { display: flex; justify-content: center; align-items: center; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .footer-legal { padding-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; text-align: center; }
 .footer-legal p { margin: 0; }
@@ -531,11 +532,13 @@ a.contact-row:hover{ transform: translateX(3px); }
    RESPONSIVE NAV
    ========================================================= */
 @media (max-width: 880px) {
-  .nav-toggle { display: flex !important; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 0; z-index: 700; }
-  .nav-toggle span { display: block; height: 2px; width: 24px; background: var(--navy); border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+ .nav-toggle { display: flex !important; flex-direction: row; align-items: center; gap: 8px; width: auto; height: 44px; background: none; border: none; cursor: pointer; padding: 0 4px; z-index: 700; }
+.nav-toggle-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--navy); }
+.nav-toggle-bars { display: flex; flex-direction: column; gap: 5px; }
+.nav-toggle-bars span { display: block; height: 2px; width: 22px; background: var(--navy); border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
+.nav-toggle.open .nav-toggle-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+.nav-toggle.open .nav-toggle-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .header-cta { display: none; }
   .main-nav { position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px); background: var(--navy-deep); flex-direction: column; align-items: flex-start; gap: 6px; padding: 100px 32px 32px; transform: translateX(100%); transition: transform 0.32s var(--ease); z-index: 600; }
   .main-nav.open { transform: translateX(0); }
@@ -629,7 +632,7 @@ a.contact-row:hover{ transform: translateX(3px); }
 
   /* RÉALISATIONS */
   .realisations-body { padding: 32px 0 60px; }
-  .real-grid { grid-template-columns: 1fr 1fr; }
+  .real-grid { grid-template-columns: 1fr 1fr; margin: 0 16px; border-radius: 6px; overflow: hidden; }
 
   /* NETWORK */
   .network { padding: 48px 0; }
