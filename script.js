@@ -209,7 +209,6 @@
       }
     }, 50);
 
-    // Initialiser les custom selects à chaque fois que devis devient actif
     if (route === 'devis') {
       setTimeout(function() {
         initCustomSelects();
@@ -235,122 +234,118 @@
     // BURGER MENU
     // -------------------------------------------------------
     if (navToggle && mainNav) {
+
+      function openNav() {
+        mainNav.classList.add('open');
+        navToggle.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        body.classList.add('nav-open');
+      }
+
+      function closeNav() {
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        body.classList.remove('nav-open');
+      }
+
+      // touchstart — empêche le click fantôme 300ms
+      navToggle.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mainNav.classList.contains('open') ? closeNav() : openNav();
+      }, { passive: false });
+
+      // click — pour desktop et fallback
       navToggle.addEventListener('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        var isOpen = mainNav.classList.contains('open');
-        if (isOpen) {
-          mainNav.classList.remove('open');
-          navToggle.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          body.classList.remove('nav-open');
-        } else {
-          mainNav.classList.add('open');
-          navToggle.classList.add('open');
-          navToggle.setAttribute('aria-expanded', 'true');
-          body.classList.add('nav-open');
-        }
+        mainNav.classList.contains('open') ? closeNav() : openNav();
       });
 
+      // Fermer en cliquant dehors
       document.addEventListener('click', function(e) {
-        setTimeout(function() {
-          if (body.classList.contains('nav-open') &&
-              !mainNav.contains(e.target) &&
-              !navToggle.contains(e.target)) {
-            mainNav.classList.remove('open');
-            navToggle.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            body.classList.remove('nav-open');
-          }
-        }, 10);
+        if (body.classList.contains('nav-open') &&
+            !mainNav.contains(e.target) &&
+            !navToggle.contains(e.target)) {
+          closeNav();
+        }
       });
 
+      // Fermer avec Escape
       window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          mainNav.classList.remove('open');
-          navToggle.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          body.classList.remove('nav-open');
-        }
+        if (e.key === 'Escape') closeNav();
       });
     }
 
-// PACKETS ANIMATION
-var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9'];
-var packetsLayer = document.querySelector('.packets');
-var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // -------------------------------------------------------
+    // PACKETS ANIMATION
+    // -------------------------------------------------------
+    var routeIds = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9'];
+    var packetsLayer = document.querySelector('.packets');
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (packetsLayer && !prefersReducedMotion) {
-  routeIds.forEach(function (id, idx) {
-    var path = document.getElementById(id);
-    if (!path) return;
-    var len = path.getTotalLength();
+    if (packetsLayer && !prefersReducedMotion) {
+      routeIds.forEach(function (id, idx) {
+        var path = document.getElementById(id);
+        if (!path) return;
+        var len = path.getTotalLength();
 
-    var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('r', '3');
-    dot.setAttribute('fill', '#ffffff');
-    dot.style.filter = 'drop-shadow(0 0 4px rgba(255,255,255,0.85))';
-    packetsLayer.appendChild(dot);
+        var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('r', '3');
+        dot.setAttribute('fill', '#ffffff');
+        dot.style.filter = 'drop-shadow(0 0 4px rgba(255,255,255,0.85))';
+        packetsLayer.appendChild(dot);
 
-    var tripDuration = 4000 + idx * 400;
-    var pauseDuration = 2000;
-    var fadeDuration = 400; // durée du fondu en ms
-    var cycleDuration = (tripDuration + pauseDuration) * 2;
-    var delay = idx * 700;
-    var startTime = null;
+        var tripDuration = 4000 + idx * 400;
+        var pauseDuration = 2000;
+        var fadeDuration = 400;
+        var cycleDuration = (tripDuration + pauseDuration) * 2;
+        var delay = idx * 700;
+        var startTime = null;
 
-    function frame(ts) {
-      if (startTime === null) startTime = ts;
-      var elapsed = ts - startTime - delay;
-      if (elapsed < 0) { requestAnimationFrame(frame); return; }
+        function frame(ts) {
+          if (startTime === null) startTime = ts;
+          var elapsed = ts - startTime - delay;
+          if (elapsed < 0) { requestAnimationFrame(frame); return; }
 
-      var cyclePos = elapsed % cycleDuration;
-      var t = 0;
-      var opacity = 1;
+          var cyclePos = elapsed % cycleDuration;
+          var t = 0;
+          var opacity = 1;
 
-      if (cyclePos < tripDuration) {
-        // Aller
-        t = cyclePos / tripDuration;
-        // Apparition au départ
-        if (cyclePos < fadeDuration) {
-          opacity = cyclePos / fadeDuration;
+          if (cyclePos < tripDuration) {
+            t = cyclePos / tripDuration;
+            if (cyclePos < fadeDuration) {
+              opacity = cyclePos / fadeDuration;
+            } else if (cyclePos > tripDuration - fadeDuration) {
+              opacity = (tripDuration - cyclePos) / fadeDuration;
+            }
+          } else if (cyclePos < tripDuration + pauseDuration) {
+            t = 1;
+            opacity = 0;
+          } else if (cyclePos < tripDuration * 2 + pauseDuration) {
+            var retourPos = cyclePos - tripDuration - pauseDuration;
+            t = 1 - retourPos / tripDuration;
+            if (retourPos < fadeDuration) {
+              opacity = retourPos / fadeDuration;
+            } else if (retourPos > tripDuration - fadeDuration) {
+              opacity = (tripDuration - retourPos) / fadeDuration;
+            }
+          } else {
+            t = 0;
+            opacity = 0;
+          }
+
+          var point = path.getPointAtLength(t * len);
+          dot.setAttribute('cx', point.x);
+          dot.setAttribute('cy', point.y);
+          dot.setAttribute('opacity', opacity);
+          requestAnimationFrame(frame);
         }
-        // Disparition à l'arrivée
-        else if (cyclePos > tripDuration - fadeDuration) {
-          opacity = (tripDuration - cyclePos) / fadeDuration;
-        }
-      } else if (cyclePos < tripDuration + pauseDuration) {
-        // Pause à destination — invisible
-        t = 1;
-        opacity = 0;
-      } else if (cyclePos < tripDuration * 2 + pauseDuration) {
-        // Retour
-        var retourPos = cyclePos - tripDuration - pauseDuration;
-        t = 1 - retourPos / tripDuration;
-        // Apparition au départ du retour
-        if (retourPos < fadeDuration) {
-          opacity = retourPos / fadeDuration;
-        }
-        // Disparition à l'arrivée du retour
-        else if (retourPos > tripDuration - fadeDuration) {
-          opacity = (tripDuration - retourPos) / fadeDuration;
-        }
-      } else {
-        // Pause à l'origine — invisible
-        t = 0;
-        opacity = 0;
-      }
 
-      var point = path.getPointAtLength(t * len);
-      dot.setAttribute('cx', point.x);
-      dot.setAttribute('cy', point.y);
-      dot.setAttribute('opacity', opacity);
-      requestAnimationFrame(frame);
+        requestAnimationFrame(frame);
+      });
     }
-
-    requestAnimationFrame(frame);
-  });
-}
 
     // -------------------------------------------------------
     // FORMS
@@ -421,7 +416,7 @@ if (packetsLayer && !prefersReducedMotion) {
     });
 
     // -------------------------------------------------------
-    // CUSTOM SELECT — initialisation au chargement
+    // CUSTOM SELECT
     // -------------------------------------------------------
     initCustomSelects();
 
