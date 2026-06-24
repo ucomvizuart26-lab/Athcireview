@@ -229,7 +229,14 @@
       window.location.hash = 'accueil';
     }
     renderRoute(parseRoute(), { skipScroll: true });
-
+    
+document.querySelectorAll('[data-route]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var route = this.getAttribute('data-route');
+    navigateTo(route);
+  });
+});
     // -------------------------------------------------------
     // BURGER MENU
     // -------------------------------------------------------
