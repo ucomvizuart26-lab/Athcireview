@@ -533,13 +533,15 @@ a.contact-row:hover{ transform: translateX(3px); }
    ========================================================= */
 @media (max-width: 880px) {
   .nav-toggle { display: flex !important; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 0; z-index: 700; }
-  .nav-toggle span { display: block; height: 2px; width: 24px; background: var(--navy); border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
+  .nav-toggle span { display: block; height: 2px; width: 24px; background: #ffffff; border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
   .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .header-cta { display: none; }background: linear-gradient(180deg, rgba(12,129,74,0.97) 0%, rgba(50,169,89,0.93) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); flex-direction: column; align-items: flex-start; gap: 6px; padding: 100px 32px 32px; transform: translateX(100%); opacity: 0; transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+  .header-cta { display: none; }
+  .main-nav { position: fixed; top: 0; right: 0; height: 100vh; width: min(60vw, 260px); background: linear-gradient(180deg, rgba(12,129,74,0.97) 0%, rgba(50,169,89,0.93) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); flex-direction: column; align-items: flex-start; gap: 6px; padding: 100px 32px 32px; transform: translateX(100%); opacity: 0; transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
   .main-nav.open { transform: translateX(0); opacity: 1; }
   .main-nav a { display: block; min-height: 48px; line-height: 48px; padding: 0; touch-action: manipulation; -webkit-tap-highlight-color: transparent; color: #ffffff; cursor: pointer; pointer-events: auto !important; position: relative; z-index: 650; }
+  .main-nav a.is-active { color: var(--green-deep); font-weight: 700; }
   .main-nav a::after { display: none; }
   body.nav-open::before { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 550; pointer-events: none; }
 }
