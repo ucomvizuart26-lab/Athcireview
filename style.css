@@ -533,7 +533,7 @@ a.contact-row:hover{ transform: translateX(3px); }
    ========================================================= */
 @media (max-width: 880px) {
  .nav-toggle { display: flex !important; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 0; z-index: 700; }
-.nav-toggle span { display: block; height: 2px; width: 24px; background: var(--navy); border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
+.nav-toggle span { display: block; height: 2px; width: 24px; background: var(--azure); border-radius: 2px; transition: transform 0.25s var(--ease), opacity 0.2s var(--ease); }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
