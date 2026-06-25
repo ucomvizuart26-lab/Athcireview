@@ -556,6 +556,7 @@ a.contact-row:hover{ transform: translateX(3px); }
 }
   .main-nav a::after { display: none; }
   body.nav-open::before { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 550; pointer-events: none; }
+  .main-nav a { -webkit-tap-highlight-color: transparent; }
    
 /* =========================================================
    RESPONSIVE MOBILE COMPLET
