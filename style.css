@@ -539,7 +539,7 @@ a.contact-row:hover{ transform: translateX(3px); }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   
   .header-cta { display: none; }
-  .main-nav { position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px); background: var(--navy-deep); flex-direction: column; align-items: flex-start; gap: 6px; padding: 100px 32px 32px; transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+  .main-nav { position: fixed; top: 0; right: 0; height: 100vh; width: min(60vw, 260px); background: var(--navy-deep); flex-direction: column; align-items: flex-start; gap: 6px; padding: 100px 32px 32px; transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
   .main-nav.open { transform: translateX(0); }
 .main-nav a { 
   display: block;
