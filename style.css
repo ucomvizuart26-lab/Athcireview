@@ -216,7 +216,9 @@ button{ font-family: inherit; }
     bottom: 0px;
     overflow: visible;
   }
-   .hero-promise {
+}
+
+.hero-promise {
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
