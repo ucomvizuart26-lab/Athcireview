@@ -216,7 +216,15 @@ button{ font-family: inherit; }
     bottom: 0px;
     overflow: visible;
   }
+   .hero-promise {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  display: block;
 }
+
 
 /* =========================================================
    TRUST STRIP
