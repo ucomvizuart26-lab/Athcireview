@@ -216,6 +216,9 @@ button{ font-family: inherit; }
     bottom: 0px;
     overflow: visible;
   }
+  .page-hero--partenaires .page-hero-img-right {
+    width: 45%;
+  }
 }
 
 .hero-promise {
@@ -226,7 +229,6 @@ button{ font-family: inherit; }
   line-height: 1.4;
   display: block;
 }
-
 
 /* =========================================================
    TRUST STRIP
@@ -469,6 +471,12 @@ a.contact-row:hover{ transform: translateX(3px); }
 .real-empty-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--ink-soft); opacity: 0.4; font-size: 13px; font-family: var(--font-mono); letter-spacing: 0.06em; }
 .real-card img, .real-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .real-card-label { position: absolute; bottom: 12px; left: 12px; background: rgba(16,19,26,0.72); color: #fff; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: var(--radius-s); backdrop-filter: blur(4px); }
+.real-section { padding: 48px 0; }
+.real-section--alt { background: #fff; padding: 48px 28px; border-radius: var(--radius-m); }
+.real-section-head { margin-bottom: 32px; }
+.real-section-title { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 28px); font-weight: 600; color: var(--navy); margin: 8px 0 6px; }
+.real-section-sub { font-size: 14px; color: var(--ink-soft); margin: 0; }
+.real-divider { height: 1px; background: var(--line); margin: 0 0 8px; }
 
 /* =========================================================
    SPLASH SCREEN
@@ -555,6 +563,110 @@ a.contact-row:hover{ transform: translateX(3px); }
   .main-nav a::after { display: none; }
   body.nav-open::before { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 550; pointer-events: none; }
 }
+
+
+
+/* =========================================================
+   PARTENAIRES
+   ========================================================= */
+.page-hero--partenaires::before {
+  background-image: url('https://i.ibb.co/Y4R1CkKD/port-athci.png');
+  background-size: cover;
+  background-position: center center;
+}
+.page-hero--partenaires .page-hero-img-right img {
+  max-height: 550px;
+  transform: translateY(30px);
+}
+.partenaires-body {
+  background: var(--paper);
+  padding: 72px 0 100px;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.partner-card {
+  background: #fff;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.partner-card:hover {
+  background: var(--paper-dim);
+  transform: translateY(-3px);
+}
+
+.partner-logo-wrap {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo-wrap img {
+  max-height: 70px;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.partner-card:hover .partner-logo-wrap img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.partner-logo-placeholder {
+  width: 140px;
+  height: 64px;
+  background: var(--paper-dim);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  opacity: 0.5;
+}
+
+.partner-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 880px) {
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+  .partenaires-body { padding: 48px 0 72px; }
+}
+
+@media (max-width: 540px) {
+  .partners-grid { grid-template-columns: 1fr 1fr; }
+  .partner-card { padding: 28px 20px; }
+}
+
+
 /* =========================================================
    RESPONSIVE MOBILE COMPLET
    ========================================================= */

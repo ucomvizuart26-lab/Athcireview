@@ -1,4 +1,4 @@
-var ROUTES_G = ['accueil', 'services', 'apropos', 'realisations', 'contact', 'devis'];
+var ROUTES_G = ['accueil', 'services', 'apropos', 'realisations', 'partenaires', 'contact', 'devis'];
 
 window.goTo = function(route) {
   document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('is-active'); });
@@ -63,8 +63,8 @@ window.goTo = function(route) {
 
 (function () {
 
-  var ROUTES = ['accueil', 'services', 'apropos', 'realisations', 'contact', 'devis'];
-  var DEFAULT_ROUTE = 'accueil';
+var ROUTES = ['accueil', 'services', 'apropos', 'realisations', 'partenaires', 'contact', 'devis'];
+var DEFAULT_ROUTE = 'accueil';
 
   var views = {};
   ROUTES.forEach(function (r) {
@@ -115,17 +115,18 @@ window.goTo = function(route) {
     }
   }
 
-  function routeTitle(route) {
-    var titles = {
-      accueil: 'ATH CI — The Best Forwarder | Transit & Logistique',
-      services: 'Nos prestations — ATH CI',
-      apropos: 'Qui sommes-nous — ATH CI',
-      contact: 'Contact — ATH CI',
-      devis: 'Demander un devis — ATH CI',
-      realisations: 'Réalisations — ATH CI'
-    };
-    return titles[route] || titles[DEFAULT_ROUTE];
-  }
+ function routeTitle(route) {
+  var titles = {
+    accueil: 'ATH CI — The Best Forwarder | Transit & Logistique',
+    services: 'Nos prestations — ATH CI',
+    apropos: 'Qui sommes-nous — ATH CI',
+    realisations: 'Réalisations — ATH CI',
+    partenaires: 'Nos partenaires — ATH CI',
+    contact: 'Contact — ATH CI',
+    devis: 'Demander un devis — ATH CI'
+  };
+  return titles[route] || titles[DEFAULT_ROUTE];
+}
 
   function initCustomSelects() {
     document.querySelectorAll('.custom-select').forEach(function(select) {
@@ -448,5 +449,76 @@ document.querySelectorAll('[data-route]').forEach(function(link) {
     });
 
   });
+  
+  /* ── LIGHTBOX ── */
+var lb = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var lbLabel = document.getElementById('lb-label');
+var lbImages = [];
+var lbIndex = 0;
+
+function openLightbox(cards, index) {
+  lbImages = cards;
+  lbIndex = index;
+  showLbSlide();
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function showLbSlide() {
+  var card = lbImages[lbIndex];
+  lbImg.src = card.querySelector('img').src;
+  lbImg.alt = card.querySelector('img').alt;
+  var label = card.querySelector('.real-card-label');
+  lbLabel.textContent = label ? label.textContent : '';
+}
+
+function closeLightbox() {
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', function() {
+  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+  showLbSlide();
+});
+document.getElementById('lb-next').addEventListener('click', function() {
+  lbIndex = (lbIndex + 1) % lbImages.length;
+  showLbSlide();
+});
+
+lb.addEventListener('click', function(e) {
+  if (e.target === lb) closeLightbox();
+});
+
+window.addEventListener('keydown', function(e) {
+  if (lb.style.display === 'none') return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; showLbSlide(); }
+  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; showLbSlide(); }
+});
+
+/* swipe mobile */
+var lbTouchX = 0;
+lb.addEventListener('touchstart', function(e) { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', function(e) {
+  var diff = lbTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) {
+    if (diff > 0) { lbIndex = (lbIndex + 1) % lbImages.length; }
+    else { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; }
+    showLbSlide();
+  }
+}, { passive: true });
+
+/* bind clics sur les real-card avec image */
+document.addEventListener('click', function(e) {
+  var card = e.target.closest('.real-card:not(.real-card--empty)');
+  if (!card) return;
+  var allCards = Array.from(document.querySelectorAll('.real-card:not(.real-card--empty)[data-type="photo"]'));
+  var index = allCards.indexOf(card);
+  if (index === -1) return;
+  openLightbox(allCards, index);
+});
 
 })();
