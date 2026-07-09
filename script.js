@@ -450,75 +450,92 @@ document.querySelectorAll('[data-route]').forEach(function(link) {
 
   });
   
-  /* ── LIGHTBOX ── */
+ /* ── GALERIES LIGHTBOX ── */
+var galleries = {
+  negoce: [
+    { src: 'https://i.ibb.co/jk5NfhPG/Entrepo-ts-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
+    { src: 'https://i.ibb.co/CjSFKW3/IMG-20260228-WA0005.jpg', label: 'Entrepôts intérieur — Anyama' },
+    { src: 'https://i.ibb.co/60R2y5qT/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
+    { src: 'https://i.ibb.co/GjYHYRD/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
+    { src: 'https://i.ibb.co/bMVxz6Rv/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
+    { src: 'https://i.ibb.co/wNtWwgTK/TSR10-sur-palettes.jpg', label: 'TSR 10 sur palettes' },
+    { src: 'https://i.ibb.co/TB5rKG5Z/Pommes-et-Noix-de-cajou.jpg', label: 'Pommes et noix de cajou' },
+    { src: 'https://i.ibb.co/rR12w7f3/Noix-de-cajou-se-che-es.jpg', label: 'Noix de cajou' },
+    { src: 'https://i.ibb.co/Kj6WVqq1/Ope-ration-Hinterland.jpg', label: 'Opération Hinterland' },
+    { src: 'https://i.ibb.co/kgBWYWt3/Ope-ration-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
+    { src: 'https://i.ibb.co/tTt4sWwZ/Transport.jpg', label: 'Transport' }
+  ],
+  vehicules: [
+    { src: 'https://i.ibb.co/ds3gvrJV/Jetour-exte-rieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
+    { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
+    { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' }
+  ]
+  
+};
+
+var lbData = [];
+var lbCurrent = 0;
 var lb = document.getElementById('lightbox');
 var lbImg = document.getElementById('lb-img');
 var lbLabel = document.getElementById('lb-label');
-var lbImages = [];
-var lbIndex = 0;
 
-function openLightbox(cards, index) {
-  lbImages = cards;
-  lbIndex = index;
-  showLbSlide();
+function openGallery(name, index) {
+  lbData = galleries[name];
+  lbCurrent = index || 0;
+  showSlide();
   lb.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 
-function showLbSlide() {
-  var card = lbImages[lbIndex];
-  lbImg.src = card.querySelector('img').src;
-  lbImg.alt = card.querySelector('img').alt;
-  var label = card.querySelector('.real-card-label');
-  lbLabel.textContent = label ? label.textContent : '';
+function showSlide() {
+  var item = lbData[lbCurrent];
+  lbImg.src = item.src;
+  lbImg.alt = item.label;
+  lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' — ' + item.label;
 }
 
-function closeLightbox() {
+function closeLb() {
   lb.style.display = 'none';
   document.body.style.overflow = '';
 }
 
-document.getElementById('lb-close').addEventListener('click', closeLightbox);
-document.getElementById('lb-prev').addEventListener('click', function() {
-  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
-  showLbSlide();
-});
-document.getElementById('lb-next').addEventListener('click', function() {
-  lbIndex = (lbIndex + 1) % lbImages.length;
-  showLbSlide();
+document.querySelectorAll('.real-gallery-card').forEach(function(el) {
+  el.addEventListener('click', function() {
+    openGallery(el.getAttribute('data-gallery'), 0);
+  });
 });
 
+document.getElementById('lb-prev').addEventListener('click', function() {
+  lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length;
+  showSlide();
+});
+
+document.getElementById('lb-next').addEventListener('click', function() {
+  lbCurrent = (lbCurrent + 1) % lbData.length;
+  showSlide();
+});
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+
 lb.addEventListener('click', function(e) {
-  if (e.target === lb) closeLightbox();
+  if (e.target === lb) closeLb();
 });
 
 window.addEventListener('keydown', function(e) {
-  if (lb.style.display === 'none') return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; showLbSlide(); }
-  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; showLbSlide(); }
+  if (!lb || lb.style.display === 'none') return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') { lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length; showSlide(); }
+  if (e.key === 'ArrowRight') { lbCurrent = (lbCurrent + 1) % lbData.length; showSlide(); }
 });
 
-/* swipe mobile */
-var lbTouchX = 0;
-lb.addEventListener('touchstart', function(e) { lbTouchX = e.touches[0].clientX; }, { passive: true });
+var touchX = 0;
+lb.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
 lb.addEventListener('touchend', function(e) {
-  var diff = lbTouchX - e.changedTouches[0].clientX;
+  var diff = touchX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 40) {
-    if (diff > 0) { lbIndex = (lbIndex + 1) % lbImages.length; }
-    else { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; }
-    showLbSlide();
+    lbCurrent = diff > 0 ? (lbCurrent + 1) % lbData.length : (lbCurrent - 1 + lbData.length) % lbData.length;
+    showSlide();
   }
 }, { passive: true });
-
-/* bind clics sur les real-card avec image */
-document.addEventListener('click', function(e) {
-  var card = e.target.closest('.real-card:not(.real-card--empty)');
-  if (!card) return;
-  var allCards = Array.from(document.querySelectorAll('.real-card:not(.real-card--empty)[data-type="photo"]'));
-  var index = allCards.indexOf(card);
-  if (index === -1) return;
-  openLightbox(allCards, index);
-});
 
 })();
