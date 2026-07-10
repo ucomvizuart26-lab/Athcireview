@@ -465,10 +465,12 @@ var galleries = {
     { src: 'https://i.ibb.co/kgBWYWt3/Ope-ration-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
     { src: 'https://i.ibb.co/tTt4sWwZ/Transport.jpg', label: 'Transport' }
   ],
-  vehicules: [
+ vehicules: [
     { src: 'https://i.ibb.co/ds3gvrJV/Jetour-exte-rieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
     { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
-    { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' }
+    { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
+    { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison véhicule — ATH CI' },
+    { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation véhicule — ATH CI' }
   ]
   
 };
@@ -489,14 +491,32 @@ function openGallery(name, index) {
 
 function showSlide() {
   var item = lbData[lbCurrent];
-  lbImg.src = item.src;
-  lbImg.alt = item.label;
   lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' — ' + item.label;
+
+  if (item.type === 'youtube') {
+    lbImg.style.display = 'none';
+    var existing = document.getElementById('lb-yt');
+    if (existing) existing.remove();
+    var iframe = document.createElement('iframe');
+    iframe.id = 'lb-yt';
+   iframe.src = 'https://www.youtube.com/embed/' + item.src + '?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3&enablejsapi=1';
+    iframe.allow = 'autoplay; fullscreen';
+    iframe.style.cssText = 'width:90vw;max-width:900px;height:50vw;max-height:500px;border:none;border-radius:8px;';
+    lbImg.parentNode.insertBefore(iframe, lbImg);
+  } else {
+    lbImg.style.display = 'block';
+    var yt = document.getElementById('lb-yt');
+    if (yt) yt.remove();
+    lbImg.src = item.src;
+    lbImg.alt = item.label;
+  }
 }
 
 function closeLb() {
   lb.style.display = 'none';
   document.body.style.overflow = '';
+  var yt = document.getElementById('lb-yt');
+  if (yt) yt.remove();
 }
 
 document.querySelectorAll('.real-gallery-card').forEach(function(el) {
