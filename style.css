@@ -740,7 +740,7 @@ a.contact-row:hover{ transform: translateX(3px); }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
   .form-row { grid-template-columns: 1fr; }
   .contact-form { padding: 24px 18px; opacity: 1 !important; transform: none !important; transition: none !important; }
-  .contact-intro { text-align: center; }
+  .contact-intro { text-align: center; opacity: 1 !important; transform: none !important; transition: none !important; }
   .contact-intro .eyebrow { justify-content: center; }
   .contact-details { align-items: flex-start; width: fit-content; margin: 0 auto; }
   .contact-row { justify-content: flex-start; }
