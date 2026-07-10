@@ -390,12 +390,14 @@ window.goTo = function(route) {
   var lbLabel = document.getElementById('lb-label');
 
   function openGallery(name, index) {
-    lbData = galleries[name];
-    lbCurrent = index || 0;
-    showSlide();
-    lb.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
+  lbData = galleries[name];
+  lbCurrent = index || 0;
+  showSlide();
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
+}
 
   function showSlide() {
     var item = lbData[lbCurrent];
@@ -420,11 +422,13 @@ window.goTo = function(route) {
   }
 
   function closeLb() {
-    lb.style.display = 'none';
-    document.body.style.overflow = '';
-    var yt = document.getElementById('lb-yt');
-    if (yt) yt.remove();
-  }
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
+  var yt = document.getElementById('lb-yt');
+  if (yt) yt.remove();
+}
 
   document.querySelectorAll('.real-gallery-card').forEach(function(el) {
     el.addEventListener('click', function() {
