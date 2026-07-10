@@ -15,6 +15,7 @@ window.goTo = function(route) {
   window.location.hash = route;
   window.scrollTo(0,0);
 };
+
 // ===================================================================
 // ATH CI — SPA router + interactions
 // ===================================================================
@@ -63,8 +64,8 @@ window.goTo = function(route) {
 
 (function () {
 
-var ROUTES = ['accueil', 'services', 'apropos', 'realisations', 'partenaires', 'contact', 'devis'];
-var DEFAULT_ROUTE = 'accueil';
+  var ROUTES = ['accueil', 'services', 'apropos', 'realisations', 'partenaires', 'contact', 'devis'];
+  var DEFAULT_ROUTE = 'accueil';
 
   var views = {};
   ROUTES.forEach(function (r) {
@@ -115,18 +116,18 @@ var DEFAULT_ROUTE = 'accueil';
     }
   }
 
- function routeTitle(route) {
-  var titles = {
-    accueil: 'ATH CI — The Best Forwarder | Transit & Logistique',
-    services: 'Nos prestations — ATH CI',
-    apropos: 'Qui sommes-nous — ATH CI',
-    realisations: 'Réalisations — ATH CI',
-    partenaires: 'Nos partenaires — ATH CI',
-    contact: 'Contact — ATH CI',
-    devis: 'Demander un devis — ATH CI'
-  };
-  return titles[route] || titles[DEFAULT_ROUTE];
-}
+  function routeTitle(route) {
+    var titles = {
+      accueil: 'ATH CI — The Best Forwarder | Transit & Logistique',
+      services: 'Nos prestations — ATH CI',
+      apropos: 'Qui sommes-nous — ATH CI',
+      realisations: 'Réalisations — ATH CI',
+      partenaires: 'Nos partenaires — ATH CI',
+      contact: 'Contact — ATH CI',
+      devis: 'Demander un devis — ATH CI'
+    };
+    return titles[route] || titles[DEFAULT_ROUTE];
+  }
 
   function initCustomSelects() {
     document.querySelectorAll('.custom-select').forEach(function(select) {
@@ -193,7 +194,6 @@ var DEFAULT_ROUTE = 'accueil';
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
-    // Fermer le menu mobile
     if (mainNav) mainNav.classList.remove('open');
     if (navToggle) {
       navToggle.classList.remove('open');
@@ -203,7 +203,6 @@ var DEFAULT_ROUTE = 'accueil';
 
     initRevealFor(views[route]);
 
-    // Reset animations contact
     var contactIntro = document.querySelector('.contact-intro');
     var contactFormSimple = document.querySelector('#contact-form-simple');
     if (contactIntro) {
@@ -244,61 +243,63 @@ var DEFAULT_ROUTE = 'accueil';
       window.location.hash = 'accueil';
     }
     renderRoute(parseRoute(), { skipScroll: true });
-    
-document.querySelectorAll('[data-route]').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    var route = this.getAttribute('data-route');
-    navigateTo(route);
-  });
-});
+
     // -------------------------------------------------------
     // BURGER MENU
     // -------------------------------------------------------
-    if (navToggle && mainNav) {
-  var touchHandled = false;
+    var touchHandled = false;
 
-  function openNav() {
-    mainNav.classList.add('open');
-    navToggle.classList.add('open');
-    navToggle.setAttribute('aria-expanded', 'true');
-    body.classList.add('nav-open');
-  }
-
-  function closeNav() {
-    mainNav.classList.remove('open');
-    navToggle.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    body.classList.remove('nav-open');
-  }
-
-  navToggle.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    touchHandled = true;
-    mainNav.classList.contains('open') ? closeNav() : openNav();
-    setTimeout(function() { touchHandled = false; }, 500);
-  }, { passive: false });
-
-  navToggle.addEventListener('click', function(e) {
-    if (touchHandled) return;
-    e.stopPropagation();
-    mainNav.classList.contains('open') ? closeNav() : openNav();
-  });
-
-  document.addEventListener('click', function(e) {
-    if (touchHandled) return;
-    if (body.classList.contains('nav-open') &&
-        !mainNav.contains(e.target) &&
-        !navToggle.contains(e.target)) {
-      closeNav();
+    function openNav() {
+      mainNav.classList.add('open');
+      navToggle.classList.add('open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      body.classList.add('nav-open');
     }
-  });
 
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeNav();
-  });
-}
+    function closeNav() {
+      mainNav.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      body.classList.remove('nav-open');
+    }
+
+    if (navToggle && mainNav) {
+      navToggle.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        touchHandled = true;
+        mainNav.classList.contains('open') ? closeNav() : openNav();
+        setTimeout(function() { touchHandled = false; }, 500);
+      }, { passive: false });
+
+      navToggle.addEventListener('click', function(e) {
+        if (touchHandled) return;
+        e.stopPropagation();
+        mainNav.classList.contains('open') ? closeNav() : openNav();
+      });
+
+      document.addEventListener('click', function(e) {
+        if (touchHandled) return;
+        if (body.classList.contains('nav-open') &&
+            !mainNav.contains(e.target) &&
+            !navToggle.contains(e.target)) {
+          closeNav();
+        }
+      });
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeNav();
+      });
+    }
+
+    document.querySelectorAll('[data-route]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var route = this.getAttribute('data-route');
+        if (this.closest('#main-nav')) closeNav();
+        navigateTo(route);
+      });
+    });
 
     // -------------------------------------------------------
     // PACKETS ANIMATION
@@ -449,113 +450,112 @@ document.querySelectorAll('[data-route]').forEach(function(link) {
     });
 
   });
-  
- /* ── GALERIES LIGHTBOX ── */
-var galleries = {
-  negoce: [
-    { src: 'https://i.ibb.co/jk5NfhPG/Entrepo-ts-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
-    { src: 'https://i.ibb.co/CjSFKW3/IMG-20260228-WA0005.jpg', label: 'Entrepôts intérieur — Anyama' },
-    { src: 'https://i.ibb.co/60R2y5qT/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
-    { src: 'https://i.ibb.co/GjYHYRD/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
-    { src: 'https://i.ibb.co/bMVxz6Rv/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
-    { src: 'https://i.ibb.co/wNtWwgTK/TSR10-sur-palettes.jpg', label: 'TSR 10 sur palettes' },
-    { src: 'https://i.ibb.co/TB5rKG5Z/Pommes-et-Noix-de-cajou.jpg', label: 'Pommes et noix de cajou' },
-    { src: 'https://i.ibb.co/rR12w7f3/Noix-de-cajou-se-che-es.jpg', label: 'Noix de cajou' },
-    { src: 'https://i.ibb.co/Kj6WVqq1/Ope-ration-Hinterland.jpg', label: 'Opération Hinterland' },
-    { src: 'https://i.ibb.co/kgBWYWt3/Ope-ration-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
-    { src: 'https://i.ibb.co/tTt4sWwZ/Transport.jpg', label: 'Transport' }
-  ],
- vehicules: [
-    { src: 'https://i.ibb.co/ds3gvrJV/Jetour-exte-rieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
-    { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
-    { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
-    { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison véhicule — ATH CI' },
-    { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation véhicule — ATH CI' }
-  ]
-  
-};
 
-var lbData = [];
-var lbCurrent = 0;
-var lb = document.getElementById('lightbox');
-var lbImg = document.getElementById('lb-img');
-var lbLabel = document.getElementById('lb-label');
+  /* ── GALERIES LIGHTBOX ── */
+  var galleries = {
+    negoce: [
+      { src: 'https://i.ibb.co/jk5NfhPG/Entrepo-ts-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
+      { src: 'https://i.ibb.co/CjSFKW3/IMG-20260228-WA0005.jpg', label: 'Entrepôts intérieur — Anyama' },
+      { src: 'https://i.ibb.co/60R2y5qT/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
+      { src: 'https://i.ibb.co/GjYHYRD/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
+      { src: 'https://i.ibb.co/bMVxz6Rv/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
+      { src: 'https://i.ibb.co/wNtWwgTK/TSR10-sur-palettes.jpg', label: 'TSR 10 sur palettes' },
+      { src: 'https://i.ibb.co/TB5rKG5Z/Pommes-et-Noix-de-cajou.jpg', label: 'Pommes et noix de cajou' },
+      { src: 'https://i.ibb.co/rR12w7f3/Noix-de-cajou-se-che-es.jpg', label: 'Noix de cajou' },
+      { src: 'https://i.ibb.co/Kj6WVqq1/Ope-ration-Hinterland.jpg', label: 'Opération Hinterland' },
+      { src: 'https://i.ibb.co/kgBWYWt3/Ope-ration-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
+      { src: 'https://i.ibb.co/tTt4sWwZ/Transport.jpg', label: 'Transport' }
+    ],
+    vehicules: [
+      { src: 'https://i.ibb.co/ds3gvrJV/Jetour-exte-rieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
+      { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
+      { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
+      { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison véhicule — ATH CI' },
+      { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation véhicule — ATH CI' }
+    ]
+  };
 
-function openGallery(name, index) {
-  lbData = galleries[name];
-  lbCurrent = index || 0;
-  showSlide();
-  lb.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+  var lbData = [];
+  var lbCurrent = 0;
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbLabel = document.getElementById('lb-label');
 
-function showSlide() {
-  var item = lbData[lbCurrent];
-  lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' — ' + item.label;
+  function openGallery(name, index) {
+    lbData = galleries[name];
+    lbCurrent = index || 0;
+    showSlide();
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 
-  if (item.type === 'youtube') {
-    lbImg.style.display = 'none';
-    var existing = document.getElementById('lb-yt');
-    if (existing) existing.remove();
-    var iframe = document.createElement('iframe');
-    iframe.id = 'lb-yt';
-   iframe.src = 'https://www.youtube.com/embed/' + item.src + '?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3&enablejsapi=1';
-    iframe.allow = 'autoplay; fullscreen';
-    iframe.style.cssText = 'width:90vw;max-width:900px;height:50vw;max-height:500px;border:none;border-radius:8px;';
-    lbImg.parentNode.insertBefore(iframe, lbImg);
-  } else {
-    lbImg.style.display = 'block';
+  function showSlide() {
+    var item = lbData[lbCurrent];
+    lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' — ' + item.label;
+
+    if (item.type === 'youtube') {
+      lbImg.style.display = 'none';
+      var existing = document.getElementById('lb-yt');
+      if (existing) existing.remove();
+      var iframe = document.createElement('iframe');
+      iframe.id = 'lb-yt';
+      iframe.src = 'https://www.youtube.com/embed/' + item.src + '?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3&enablejsapi=1';
+      iframe.allow = 'autoplay; fullscreen';
+      iframe.style.cssText = 'width:90vw;max-width:900px;height:50vw;max-height:500px;border:none;border-radius:8px;';
+      lbImg.parentNode.insertBefore(iframe, lbImg);
+    } else {
+      lbImg.style.display = 'block';
+      var yt = document.getElementById('lb-yt');
+      if (yt) yt.remove();
+      lbImg.src = item.src;
+      lbImg.alt = item.label;
+    }
+  }
+
+  function closeLb() {
+    lb.style.display = 'none';
+    document.body.style.overflow = '';
     var yt = document.getElementById('lb-yt');
     if (yt) yt.remove();
-    lbImg.src = item.src;
-    lbImg.alt = item.label;
   }
-}
 
-function closeLb() {
-  lb.style.display = 'none';
-  document.body.style.overflow = '';
-  var yt = document.getElementById('lb-yt');
-  if (yt) yt.remove();
-}
-
-document.querySelectorAll('.real-gallery-card').forEach(function(el) {
-  el.addEventListener('click', function() {
-    openGallery(el.getAttribute('data-gallery'), 0);
+  document.querySelectorAll('.real-gallery-card').forEach(function(el) {
+    el.addEventListener('click', function() {
+      openGallery(el.getAttribute('data-gallery'), 0);
+    });
   });
-});
 
-document.getElementById('lb-prev').addEventListener('click', function() {
-  lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length;
-  showSlide();
-});
-
-document.getElementById('lb-next').addEventListener('click', function() {
-  lbCurrent = (lbCurrent + 1) % lbData.length;
-  showSlide();
-});
-
-document.getElementById('lb-close').addEventListener('click', closeLb);
-
-lb.addEventListener('click', function(e) {
-  if (e.target === lb) closeLb();
-});
-
-window.addEventListener('keydown', function(e) {
-  if (!lb || lb.style.display === 'none') return;
-  if (e.key === 'Escape') closeLb();
-  if (e.key === 'ArrowLeft') { lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length; showSlide(); }
-  if (e.key === 'ArrowRight') { lbCurrent = (lbCurrent + 1) % lbData.length; showSlide(); }
-});
-
-var touchX = 0;
-lb.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
-lb.addEventListener('touchend', function(e) {
-  var diff = touchX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) {
-    lbCurrent = diff > 0 ? (lbCurrent + 1) % lbData.length : (lbCurrent - 1 + lbData.length) % lbData.length;
+  document.getElementById('lb-prev').addEventListener('click', function() {
+    lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length;
     showSlide();
-  }
-}, { passive: true });
+  });
+
+  document.getElementById('lb-next').addEventListener('click', function() {
+    lbCurrent = (lbCurrent + 1) % lbData.length;
+    showSlide();
+  });
+
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) closeLb();
+  });
+
+  window.addEventListener('keydown', function(e) {
+    if (!lb || lb.style.display === 'none') return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') { lbCurrent = (lbCurrent - 1 + lbData.length) % lbData.length; showSlide(); }
+    if (e.key === 'ArrowRight') { lbCurrent = (lbCurrent + 1) % lbData.length; showSlide(); }
+  });
+
+  var touchX = 0;
+  lb.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    var diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      lbCurrent = diff > 0 ? (lbCurrent + 1) % lbData.length : (lbCurrent - 1 + lbData.length) % lbData.length;
+      showSlide();
+    }
+  }, { passive: true });
 
 })();

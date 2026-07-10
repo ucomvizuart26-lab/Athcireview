@@ -726,13 +726,13 @@
 
 <script src="script.js"></script>
   
-  <!-- ============ LIGHTBOX ============ -->
+ <!-- ============ LIGHTBOX ============ -->
 <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99998;align-items:center;justify-content:center;flex-direction:column;">
   <button id="lb-close" style="position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer;z-index:2;">✕</button>
-  <button id="lb-prev" style="position:absolute;left:16px;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;z-index:2;">‹</button>
-  <button id="lb-next" style="position:absolute;right:16px;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;z-index:2;">›</button>
-  <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:6px;user-select:none;">
-  <p id="lb-label" style="color:rgba(255,255,255,0.7);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;margin-top:16px;"></p>
+  <button id="lb-prev" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:48px;cursor:pointer;z-index:2;">‹</button>
+  <button id="lb-next" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:48px;cursor:pointer;z-index:2;">›</button>
+  <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:80vh;object-fit:contain;border-radius:6px;user-select:none;">
+  <p id="lb-label" style="color:rgba(255,255,255,0.7);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;margin-top:16px;text-align:center;padding:0 20px;width:100%;"></p>
 </div>
 </body>
 </html>
