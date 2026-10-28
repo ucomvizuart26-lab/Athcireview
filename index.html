@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>ATH CI</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -29,7 +18,7 @@
     <svg style="position:absolute;inset:0;width:160px;height:160px;" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
       <circle id="splash-progress" cx="140" cy="140" r="120" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="753.98" stroke-dashoffset="753.98" transform="rotate(-90 140 140)"/>
     </svg>
-    <img src="https://i.ibb.co/39FY2frn/ATH-CI-vertical-web.png" alt="ATH CI" style="position:relative;z-index:1;width:70px;">
+    <img src="images/ATH-CI-vertical-web.png" alt="ATH CI" style="position:relative;z-index:1;width:70px;">
   </div>
 </div>
 
@@ -40,151 +29,10 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="#accueil" class="brand" data-route="accueil" aria-label="ATH CI — accueil">
-      <img class="brand-logo" src="https://i.ibb.co/HDrv36xN/ATH-CI-horizontal.png" alt="ATH CI — The Best Forwarder" width="900" height="333">
+      <img class="brand-logo" src="images/ATH-CI-horizontal.png" alt="ATH CI — The Best Forwarder" width="900" height="333">
     </a>
 
-    <nav class="main-nav" id="main-nav">
-  <a href="#accueil" data-route="accueil" onclick="goTo('accueil');return false;">Accueil</a>
-  <a href="#services" data-route="services" onclick="goTo('services');return false;">Services</a>
-  <a href="#apropos" data-route="apropos" onclick="goTo('apropos');return false;">Qui sommes-nous</a>
-  <a href="#realisations" data-route="realisations" onclick="goTo('realisations');return false;">Réalisations</a>
-      <a href="#partenaires" data-route="partenaires" onclick="goTo('partenaires');return false;">Partenaires</a>
-  <a href="#contact" data-route="contact" onclick="goTo('contact');return false;">Contact</a>
-</nav>
-
-    <a href="#devis" data-route="devis" class="btn btn-primary header-cta">Demander un devis</a>
-
-<button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-  <span></span><span></span><span></span>
-</button>
-  </div>
-</header>
-
-<!-- ============ APP VIEWPORT ============ -->
-<main id="app">
-
-  <!-- =========================================================
-       VUE 1 — ACCUEIL
-       ========================================================= -->
-  <section class="view" id="view-accueil" data-view="accueil">
-    <div class="hero">
-      <div class="hero-watermark" aria-hidden="true">
-        <img src="https://i.ibb.co/2YW1tszn/image-total-transit.jpg" alt="">
-      </div>
-      <div class="hero-grid">
-        <div class="hero-inner">
-          <p class="eyebrow"><span class="eyebrow-dot"></span>TRANSIT · LOGISTIQUE · TRANSPORT</p>
-          <h1 class="hero-title">
-            Votre meilleur <br> transitaire connecté<br>
-            <span class="hero-title-accent">au reste du monde.</span>
-          </h1>
-          <p class="hero-sub">
-            ATH CI accompagne entreprises et particuliers avec des solutions logistiques efficaces, adaptées aux exigences du commerce moderne.
-<br><br>
-<strong class="hero-promise">Chaque dossier confié à ATH CI est une promesse de confiance.</strong>
-          </p>
-          <div class="hero-cta-row">
-            <a href="#devis" data-route="devis" class="btn btn-primary">Demander un devis</a>
-            <a href="#services" data-route="services" class="btn btn-ghost">Voir nos prestations <span class="arrow">→</span></a>
-          </div>
-        </div>
-        <div class="hero-map" aria-hidden="true">
-          <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#32A959" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#32A959" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="abiGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-              </radialGradient>
-              <filter id="blueMap">
-                <feColorMatrix type="matrix"
-                  values="0.1 0 0 0 0.13
-                          0.1 0 0 0 0.35
-                          0.5 0 0 0 0.70
-                          0   0 0 1 0"/>
-              </filter>
-              <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
-                <path d="M 12 0 L 0 0 0 12" fill="none" stroke="#ffffff" stroke-width="0.5"/>
-              </pattern>
-            </defs>
-
-            <image href="https://i.ibb.co/dH418JJ/worldmap.png"
-                 x="20" y="0" width="1000" height="500"
-                 filter="url(#blueMap)"
-                 opacity="0.12"
-                 preserveAspectRatio="xMidYMid meet"/>
-
-            <path id="r1" class="route" d="M455 272 Q435 251 415 230" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
-            <path id="r4" class="route" d="M455 272 Q446 258 437 244" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
-            <path id="r5" class="route" d="M455 272 Q457 258 460 245" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
-            <path id="r2" class="route" d="M455 272 Q462 268 470 265" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
-            <path id="r3" class="route" d="M455 272 Q473 256 492 240" stroke="#32A959" stroke-width="2" fill="none" stroke-opacity="0.85" stroke-linecap="round"/>
-            <path id="r6" class="route" d="M455 272 Q647 225 840 179" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
-           <!-- Route vers France -->
-<path id="r7" class="route" d="M455 272 Q462 193 470 115" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
-<!-- Route vers USA -->
-<path id="r8" class="route" d="M455 272 Q335 218 215 165" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
-<!-- Route vers Canada -->
-<path id="r9" class="route" d="M455 272 Q332 203 210 135" stroke="#32A959" stroke-width="1.6" fill="none" stroke-opacity="0.55" stroke-linecap="round" stroke-dasharray="5 9"/>
-
-            <g class="nodes">
-              <circle class="node-glow" cx="415" cy="230" r="16" fill="url(#dotGlow)"/>
-              <circle cx="415" cy="230" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="437" cy="244" r="16" fill="url(#dotGlow)"/>
-              <circle cx="437" cy="244" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="460" cy="245" r="16" fill="url(#dotGlow)"/>
-              <circle cx="460" cy="245" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="470" cy="265" r="16" fill="url(#dotGlow)"/>
-              <circle cx="470" cy="265" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="492" cy="240" r="16" fill="url(#dotGlow)"/>
-              <circle cx="492" cy="240" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="840" cy="179" r="20" fill="url(#dotGlow)"/>
-              <circle cx="840" cy="179" r="4" fill="#32A959"/>
-              <circle class="node-glow" cx="455" cy="272" r="30" fill="url(#abiGlow)"/>
-              <circle cx="455" cy="272" r="11" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.35"/>
-              <circle class="node-dot node-main" cx="455" cy="272" r="6" fill="#FFFFFF"/>
-              <!-- France -->
-<circle class="node-glow" cx="470" cy="115" r="16" fill="url(#dotGlow)"/>
-<circle cx="470" cy="115" r="4" fill="#32A959"/>
-<!-- USA -->
-<circle class="node-glow" cx="215" cy="165" r="16" fill="url(#dotGlow)"/>
-<circle cx="215" cy="165" r="4" fill="#32A959"/>
-<!-- Canada -->
-<circle class="node-glow" cx="210" cy="135" r="16" fill="url(#dotGlow)"/>
-<circle cx="210" cy="135" r="4" fill="#32A959"/>
-            </g>
-
-            <g class="packets"></g>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="trust-strip">
-      <div class="container trust-inner">
-        <span class="trust-label">PRÉSENCE &amp; CORRIDORS ACTIFS</span>
-       <div class="trust-flags">
-  <span>Côte d'Ivoire</span>
-  <span>Ghana</span>
-  <span>Sénégal</span>
-  <span>Nigeria</span>
-  <span>Burkina Faso</span>
-  <span>Mali</span>
-  <span>Chine</span>
-  <span>France</span>
-  <span>Canada</span>
-  <span>États-Unis</span>
-</div>
-      </div>
-    </div>
-
-    <div class="teaser">
-      <div class="container teaser-grid">
-        <a href="#services" data-route="services" class="teaser-card teaser-card--prestations">
-          <span class="teaser-ico" aria-hidden="true">
+    <nav class="main-nav" id="main-nav">teaser-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><path d="M3 16l4-8 4 4 4-9 6 13H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </span>
           <h3>Nos prestations</h3>
