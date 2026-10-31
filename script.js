@@ -110,7 +110,7 @@ window.goTo = function(route) {
 
   function routeTitle(route) {
     var titles = {
-      accueil: 'ATH CI — The Best Forwarder | Transit & Logistique',
+      accueil: 'ATH CI — The Best Forwarder | Transit & Logistique à Abidjan',
       services: 'Nos prestations — ATH CI',
       apropos: 'Qui sommes-nous — ATH CI',
       realisations: 'Réalisations — ATH CI',
@@ -310,36 +310,89 @@ window.goTo = function(route) {
       });
     }
 
-    /* ── FORMS ── */
-    function bindForm(formId, noteId) {
+    /* ── FORMS ──
+       Envoi réel des formulaires vers docs@athci-transit.com (service FormSubmit).
+       En cas d'échec, le visiteur peut renvoyer sa demande sur WhatsApp. */
+    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/docs@athci-transit.com';
+    var WA_NUMBER = '2250768141515';
+    var FIELD_LABELS = { name: 'Nom', company: 'Société', email: 'E-mail', phone: 'Téléphone', type: "Type d'opération", corridor: 'Corridor', message: 'Message' };
+
+    function bindForm(formId, noteId, subject) {
       var form = document.getElementById(formId);
       var note = document.getElementById(noteId);
       if (!form || !note) return;
+      var sending = false;
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var nameField = form.querySelector('[name="name"]');
-        var emailField = form.querySelector('[name="email"]');
-        var name = nameField ? nameField.value.trim() : '';
-        var email = emailField ? emailField.value.trim() : '';
+        if (sending) return;
+        var honey = form.querySelector('[name="_honey"]');
+        if (honey && honey.value) return; // robot
+        var data = {};
+        Object.keys(FIELD_LABELS).forEach(function (k) {
+          var f = form.querySelector('[name="' + k + '"]');
+          if (f && f.value.trim()) data[FIELD_LABELS[k]] = f.value.trim();
+        });
+        var name = data['Nom'] || '';
+        var email = data['E-mail'] || '';
         if (!name || !email) {
-          note.textContent = 'Merci de renseigner votre nom et votre e-mail.';
           note.style.color = '#C0392B';
+          note.textContent = 'Merci de renseigner votre nom et votre e-mail.';
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+          note.style.color = '#C0392B';
+          note.textContent = 'Merci de vérifier votre adresse e-mail.';
           return;
         }
         var submitBtn = form.querySelector('button[type="submit"] .btn-text');
         var originalText = submitBtn ? submitBtn.textContent : '';
         if (submitBtn) submitBtn.textContent = 'Envoi en cours...';
-        setTimeout(function () {
-          note.style.color = '';
-          note.textContent = 'Merci ' + name.split(' ')[0] + ', votre demande a bien été enregistrée. Notre équipe vous recontacte sous 24h.';
-          if (submitBtn) submitBtn.textContent = originalText;
-          form.reset();
-        }, 900);
+        sending = true;
+        note.style.color = '';
+        note.textContent = '';
+
+        var payload = Object.assign({}, data, {
+          _subject: subject + ' — ' + name,
+          _replyto: email,
+          _template: 'table',
+          _captcha: 'false'
+        });
+
+        fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (res && (res.success === true || res.success === 'true')) {
+              note.style.color = '';
+              note.textContent = 'Merci ' + name.split(' ')[0] + ', votre demande a bien été envoyée. Notre équipe vous recontacte sous 24h.';
+              form.reset();
+              form.querySelectorAll('.custom-select-trigger').forEach(function (t) {
+                t.textContent = 'Sélectionner...';
+                t.classList.add('placeholder');
+              });
+              form.querySelectorAll('.custom-select input[type="hidden"]').forEach(function (h) { h.value = ''; });
+            } else {
+              throw new Error('envoi refusé');
+            }
+          })
+          .catch(function () {
+            var lines = Object.keys(data).map(function (k) { return k + ' : ' + data[k]; });
+            var wa = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Bonjour ATH CI,\n' + subject + '\n\n' + lines.join('\n'));
+            note.style.color = '#C0392B';
+            note.innerHTML = "L'envoi n'a pas abouti. Vous pouvez <a href=\"" + wa + "\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit;text-decoration:underline;\">envoyer votre demande sur WhatsApp</a> ou nous écrire à docs@athci-transit.com.";
+          })
+          .then(function () {
+            sending = false;
+            if (submitBtn) submitBtn.textContent = originalText;
+          });
       });
     }
 
-    bindForm('contact-form', 'form-note');
-    bindForm('contact-form-simple', 'form-note-simple');
+    bindForm('contact-form', 'form-note', 'Nouvelle demande de devis — site ATH CI');
+    bindForm('contact-form-simple', 'form-note-simple', 'Nouveau message — site ATH CI');
 
     /* ── HEADER SHADOW ── */
     var header = document.querySelector('.site-header');
@@ -362,22 +415,22 @@ window.goTo = function(route) {
   /* ── GALERIES LIGHTBOX ── */
   var galleries = {
     negoce: [
-      { src: 'https://i.ibb.co/jk5NfhPG/Entrepo-ts-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
-      { src: 'https://i.ibb.co/CjSFKW3/IMG-20260228-WA0005.jpg', label: 'Entrepôts intérieur — Anyama' },
-      { src: 'https://i.ibb.co/60R2y5qT/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
-      { src: 'https://i.ibb.co/GjYHYRD/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
-      { src: 'https://i.ibb.co/bMVxz6Rv/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
-      { src: 'https://i.ibb.co/wNtWwgTK/TSR10-sur-palettes.jpg', label: 'TSR 10 sur palettes' },
-      { src: 'https://i.ibb.co/TB5rKG5Z/Pommes-et-Noix-de-cajou.jpg', label: 'Pommes et noix de cajou' },
-      { src: 'https://i.ibb.co/rR12w7f3/Noix-de-cajou-se-che-es.jpg', label: 'Noix de cajou' },
-      { src: 'https://i.ibb.co/Kj6WVqq1/Ope-ration-Hinterland.jpg', label: 'Opération Hinterland' },
-      { src: 'https://i.ibb.co/kgBWYWt3/Ope-ration-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
-      { src: 'https://i.ibb.co/tTt4sWwZ/Transport.jpg', label: 'Transport' }
+      { src: 'images/galerie/Entrepots-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
+      { src: 'images/galerie/Entrepots-interieur-Anyama.jpg', label: 'Entrepôts intérieur — Anyama' },
+      { src: 'images/galerie/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
+      { src: 'images/galerie/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
+      { src: 'images/galerie/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
+      { src: 'images/galerie/TSR10-sur-palettes.jpg', label: 'TSR 10 sur palettes' },
+      { src: 'images/galerie/Pommes-et-Noix-de-cajou.jpg', label: 'Pommes et noix de cajou' },
+      { src: 'images/galerie/Noix-de-cajou-sechees.jpg', label: 'Noix de cajou' },
+      { src: 'images/galerie/Operation-Hinterland.jpg', label: 'Opération Hinterland' },
+      { src: 'images/galerie/Operation-Hinterland-2.jpg', label: 'Opération Hinterland 2' },
+      { src: 'images/galerie/Transport.jpg', label: 'Transport' }
     ],
     vehicules: [
-      { src: 'https://i.ibb.co/ds3gvrJV/Jetour-exte-rieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
+      { src: 'images/galerie/Jetour-exterieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
       { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
-      { src: 'https://i.ibb.co/1fr0m8GL/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
+      { src: 'images/galerie/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
       { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison véhicule — ATH CI' },
       { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation véhicule — ATH CI' }
     ]

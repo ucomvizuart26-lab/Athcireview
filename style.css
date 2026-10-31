@@ -176,7 +176,7 @@ button{ font-family: inherit; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://i.ibb.co/Y4R1CkKD/port-athci.png');
+  background-image: url('images/port-athci.png');
   background-size: 140%;
   background-position: 40% center;
   background-repeat: no-repeat;
@@ -188,13 +188,13 @@ button{ font-family: inherit; }
 .page-hero::after { display: none; }
 .page-hero--apropos::before { background-image: none; }
 .page-hero--services::before {
-  background-image: url('https://i.ibb.co/VYY63B9W/hevea-cajou.jpg');
+  background-image: url('images/hevea-cajou.jpg');
   background-size: cover;
   background-position: center center;
 }
 .page-hero--apropos .page-hero-img-right img { max-height: 450px; }
 .page-hero--realisations::before {
-  background-image: url('https://i.ibb.co/Mkt4nRVP/dokers-athci.jpg');
+  background-image: url('images/dokers-athci.jpg');
   background-size: 100%;
   background-position: center -180px;
 }
@@ -416,15 +416,15 @@ a.contact-row:hover{ transform: translateX(3px); }
   z-index: 0;
   transition: opacity 0.3s var(--ease);
 }
-.teaser-card--prestations::before { background-image: url('https://i.ibb.co/VYY63B9W/hevea-cajou.jpg');background-position: 30% center;
+.teaser-card--prestations::before { background-image: url('images/hevea-cajou.jpg');background-position: 30% center;
  }
-.teaser-card--apropos::before { background-image: url('https://i.ibb.co/R44WPKs8/bureauathci.png'); }
-.teaser-card--realisations::before { background-image: url('https://i.ibb.co/Mkt4nRVP/dokers-athci.jpg'); }
+.teaser-card--apropos::before { background-image: url('images/bureauathci.png'); }
+.teaser-card--realisations::before { background-image: url('images/dokers-athci.jpg'); }
 .teaser-card--contact::before { 
   background-image: url('https://i.ibb.co/212zjMXz/contactathci.jpg');
   background-position: 10% center;
 }
-.teaser-card--partenaires::before { background-image: url('https://i.ibb.co/Y4R1CkKD/port-athci.png'); }
+.teaser-card--partenaires::before { background-image: url('images/port-athci.png'); }
 .teaser-grid:hover .teaser-card:hover { filter: brightness(1.15); transform: scale(1.03); }
 .teaser-card:hover::before { opacity: 0.28; }
 .teaser-ico { position: relative; z-index: 1; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: #fff; }
@@ -665,7 +665,7 @@ a.contact-row:hover{ transform: translateX(3px); }
    PARTENAIRES
    ========================================================= */
 .page-hero--partenaires::before {
-  background-image: url('https://i.ibb.co/Y4R1CkKD/port-athci.png');
+  background-image: url('images/port-athci.png');
   background-size: cover;
   background-position: center center;
 }
@@ -826,4 +826,22 @@ a.contact-row:hover{ transform: translateX(3px); }
   .service-card { padding: 28px 20px; }
   .partners-grid { grid-template-columns: 1fr 1fr; }
   .partner-card { padding: 28px 20px; }
+}
+
+/* ── Bouton WhatsApp flottant ── */
+.wa-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 900;
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 20px 0 16px; border-radius: 999px;
+  background: #25D366; color: #fff; text-decoration: none;
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  box-shadow: 0 8px 24px rgba(16,19,26,0.22);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.wa-fab svg { width: 26px; height: 26px; flex-shrink: 0; }
+.wa-fab:hover { background: #1EBE5A; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(16,19,26,0.28); }
+.wa-fab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+@media (max-width: 640px) {
+  .wa-fab { right: 16px; bottom: 16px; width: 56px; padding: 0; justify-content: center; }
+  .wa-fab-label { display: none; }
 }
