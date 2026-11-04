@@ -845,3 +845,11 @@ a.contact-row:hover{ transform: translateX(3px); }
   .wa-fab { right: 16px; bottom: 16px; width: 56px; padding: 0; justify-content: center; }
   .wa-fab-label { display: none; }
 }
+/* ===== SÉLECTEUR DE LANGUE ===== */
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-family: var(--font-mono); font-size: 12px; }
+.lang-switch button { background: none; border: none; padding: 6px 10px; cursor: pointer; color: var(--ink-soft); font: inherit; letter-spacing: 0.08em; }
+.lang-switch button.is-active { background: var(--navy); color: #fff; }
+@media (max-width: 880px) {
+  .header-inner { gap: 14px; }
+  .lang-switch button { padding: 6px 8px; }
+}
