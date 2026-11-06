@@ -425,7 +425,7 @@ a.contact-row:hover{ transform: translateX(3px); }
   background-image: url('images/contact-athci.jpg');
   background-position: 50% 25%;
 }
-.teaser-card--partenaires::before { background-image: url('images/partenaires-athci-carte.jpg'); background-position: 36% 30%; }
+.teaser-card--partenaires::before { background-image: url('images/partenaires-athci-entrepot.jpg'); background-position: 38% 0%; }
 .teaser-grid:hover .teaser-card:hover { filter: brightness(1.15); transform: scale(1.03); }
 .teaser-card:hover::before { opacity: 0.28; }
 .teaser-ico { position: relative; z-index: 1; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: #fff; }
