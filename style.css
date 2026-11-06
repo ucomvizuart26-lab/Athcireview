@@ -855,3 +855,18 @@ a.contact-row:hover{ transform: translateX(3px); }
   .header-inner { gap: 14px; }
   .lang-switch button { padding: 6px 8px; }
 }
+
+/* =========================================================
+   CHIFFRES CLÉS DE LA BANNIÈRE
+   ========================================================= */
+.hero-stats { list-style: none; display: flex; gap: 0; margin: -8px 0 32px; padding: 0; }
+.hero-stats li { display: flex; flex-direction: column; gap: 2px; padding: 0 22px; border-left: 1px solid rgba(255,255,255,0.2); }
+.hero-stats li:first-child { padding-left: 0; border-left: 0; }
+.hero-stats strong { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #fff; line-height: 1.1; }
+.hero-stats span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+@media (max-width: 880px) {
+  .hero-stats { justify-content: center; margin: -10px 0 28px; }
+  .hero-stats li { align-items: center; padding: 0 14px; }
+  .hero-stats strong { font-size: 20px; }
+  .hero-stats span { font-size: 10px; letter-spacing: 0.05em; }
+}
