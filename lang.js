@@ -89,7 +89,7 @@
     'Conformité douanière maîtrisée': 'Customs compliance under control',
     'Dossiers montés selon les exigences réglementaires de chaque corridor, pour limiter les blocages en zone portuaire ou frontalière.': 'Files prepared according to the regulatory requirements of each corridor, to minimise delays at ports and borders.',
     'Multimodal, par nécessité': 'Multimodal by necessity',
-    'Maritime, aérien ou terrestre : le mode de transport se choisit selon le délai, le volume et le corridor — jamais par habitude.': 'Sea, air or road: the transport mode is chosen according to lead time, volume and corridor — never out of habit.',
+    'Maritime, aérien ou terrestre : le mode de transport se choisit selon le délai, le volume et le corridor, jamais par habitude.': 'Sea, air or road: the transport mode is chosen according to lead time, volume and corridor, never out of habit.',
     'Sécurisation de bout en bout': 'End-to-end security',
     "Suivi continu de la marchandise jusqu'à destination, avec un point de contact unique tout au long de l'opération.": 'Continuous tracking of your goods through to destination, with a single point of contact throughout the operation.',
     'Lecture fine du marché régional': 'In-depth knowledge of the regional market',
@@ -106,7 +106,7 @@
     'Ports, aéroports et corridors terrestres : nous facilitons vos flux commerciaux entre la Chine et les principaux marchés ouest-africains.': 'Ports, airports and land corridors: we facilitate your trade flows between China and the main West African markets.',
     'RÔLE': 'ROLE',
     'STATUT': 'STATUS',
-    "Base d'opérations — Abidjan": 'Operations base — Abidjan',
+    "Base d'opérations à Abidjan": 'Operations base in Abidjan',
     'Actif': 'Active',
     'Corridor portuaire régional': 'Regional port corridor',
     '🇸🇳 Sénégal': '🇸🇳 Senegal',
@@ -115,26 +115,26 @@
     'Corridor terrestre nord': 'Northern land corridor',
     'Corridor terrestre intérieur': 'Inland land corridor',
     '🇨🇳 Chine': '🇨🇳 China',
-    'Origine — sourcing, import & export': 'Origin — sourcing, import & export',
-    'Origine — importation de véhicules': 'Origin — vehicle imports',
+    'Origine : sourcing, import & export': 'Origin: sourcing, import & export',
+    'Origine : importation de véhicules': 'Origin: vehicle imports',
     '🇺🇸 États-Unis': '🇺🇸 United States',
 
     /* ── Réalisations ── */
     'NOS MISSIONS SUR LE TERRAIN': 'OUR FIELD OPERATIONS',
     'Ce que nous faisons,': 'What we do,',
     'en images.': 'in pictures.',
-    "Photos et vidéos de nos opérations d'import-export, dédouanement et transport - de l'Afrique de l'Ouest à l'Asie, l'Europe et l'Amérique du Nord.": 'Photos and videos of our import-export, customs clearance and transport operations — from West Africa to Asia, Europe and North America.',
+    "Photos et vidéos de nos opérations d'import-export, dédouanement et transport, de l'Afrique de l'Ouest à l'Asie, l'Europe et l'Amérique du Nord.": 'Photos and videos of our import-export, customs clearance and transport operations, from West Africa to Asia, Europe and North America.',
     'MÉDIATHÈQUE': 'MEDIA LIBRARY',
     'Photos & Vidéos': 'Photos & Videos',
     'Négoce': 'Commodity trading',
-    "Hévéa & Cajou - De la plantation à l'export.": 'Rubber & Cashew — From plantation to export.',
+    "Hévéa & Cajou : de la plantation à l'export.": 'Rubber & Cashew: from plantation to export.',
     'Voir la galerie': 'View gallery',
     'Véhicules': 'Vehicles',
-    'Import Auto - Chine, France, Canada, États-Unis.': 'Vehicle imports — China, France, Canada, United States.',
+    'Import auto : Chine, France, Canada, États-Unis.': 'Vehicle imports: China, France, Canada, United States.',
 
     /* Légendes de la galerie */
-    'Entrepôts extérieur — Anyama': 'Warehouses, exterior — Anyama',
-    'Entrepôts intérieur — Anyama': 'Warehouses, interior — Anyama',
+    'Entrepôts extérieur, Anyama': 'Warehouses, exterior, Anyama',
+    'Entrepôts intérieur, Anyama': 'Warehouses, interior, Anyama',
     'Chargement coque de palmiste': 'Loading palm kernel shells',
     'Chargement coque de palmiste 2': 'Loading palm kernel shells 2',
     'TSR 10 en vrac': 'TSR 10 in bulk',
@@ -144,10 +144,10 @@
     'Opération Hinterland': 'Hinterland operation',
     'Opération Hinterland 2': 'Hinterland operation 2',
     'Transport': 'Transport',
-    'Véhicule dédouané et immatriculé — Jetour X70 plus': 'Vehicle cleared and registered — Jetour X70 Plus',
-    'Jetour X70 plus — intérieur': 'Jetour X70 Plus — interior',
-    'Livraison véhicule — ATH CI': 'Vehicle delivery — ATH CI',
-    'Présentation véhicule — ATH CI': 'Vehicle showcase — ATH CI',
+    'Véhicule dédouané et immatriculé : Jetour X70 plus': 'Vehicle cleared and registered: Jetour X70 Plus',
+    'Jetour X70 plus, intérieur': 'Jetour X70 Plus, interior',
+    'Livraison d’un véhicule par ATH CI': 'Vehicle delivery by ATH CI',
+    'Présentation d’un véhicule par ATH CI': 'Vehicle showcase by ATH CI',
 
     /* ── Partenaires ── */
     'NOS PARTENAIRES': 'OUR PARTNERS',
@@ -175,7 +175,7 @@
     'DEMANDE DE DEVIS': 'QUOTE REQUEST',
     'Décrivez votre opération.': 'Describe your operation.',
     'Recevez une solution concrète.': 'Get a concrete solution.',
-    'Plus votre dossier est précis, plus vite nous pouvons vous répondre avec un devis exploitable — pas une estimation type.': 'The more detailed your request, the faster we can reply with an actionable quote — not a generic estimate.',
+    'Plus votre dossier est précis, plus vite nous pouvons vous répondre avec un devis exploitable, pas une estimation type.': 'The more detailed your request, the faster we can reply with an actionable quote, not a generic estimate.',
     'Société': 'Company',
     'Téléphone': 'Phone',
     "Type d'opération": 'Type of operation',
@@ -197,7 +197,7 @@
     'ou nous écrire à docs@athci-transit.com.': 'or email us at docs@athci-transit.com.',
 
     /* ── Footer ── */
-    'ATH CI — The Best Forwarder. Tous droits réservés.': 'ATH CI — The Best Forwarder. All rights reserved.',
+    'ATH CI · The Best Forwarder. Tous droits réservés.': 'ATH CI · The Best Forwarder. All rights reserved.',
 
     /* ── Textes cachés (placeholders, accessibilité) ── */
     'Votre nom': 'Your name',
@@ -220,8 +220,8 @@
   var PATTERNS = [
     [/^Merci (.+), votre demande a bien été envoyée\. Notre équipe vous recontacte sous 24h\.$/,
       function (m, name) { return 'Thank you ' + name + ', your request has been sent. Our team will get back to you within 24 hours.'; }],
-    [/^(\d+ \/ \d+) — (.+)$/,
-      function (m, num, label) { return num + ' — ' + (EN[label] || label); }]
+    [/^(\d+ \/ \d+) · (.+)$/,
+      function (m, num, label) { return num + ' · ' + (EN[label] || label); }]
   ];
 
   var ATTRS = ['placeholder', 'aria-label', 'alt', 'href'];

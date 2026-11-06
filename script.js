@@ -415,8 +415,8 @@ window.goTo = function(route) {
   /* ── GALERIES LIGHTBOX ── */
   var galleries = {
     negoce: [
-      { src: 'images/galerie/Entrepots-exterieur-Anyama.jpg', label: 'Entrepôts extérieur — Anyama' },
-      { src: 'images/galerie/Entrepots-interieur-Anyama.jpg', label: 'Entrepôts intérieur — Anyama' },
+      { src: 'images/galerie/Entrepots-exterieur-Anyama.jpg', label: 'Entrepôts extérieur, Anyama' },
+      { src: 'images/galerie/Entrepots-interieur-Anyama.jpg', label: 'Entrepôts intérieur, Anyama' },
       { src: 'images/galerie/Chargement-coque-de-palmiste.jpg', label: 'Chargement coque de palmiste' },
       { src: 'images/galerie/Chargement-coque-de-palmiste-2.jpg', label: 'Chargement coque de palmiste 2' },
       { src: 'images/galerie/TSR-10-en-vrac.jpg', label: 'TSR 10 en vrac' },
@@ -428,11 +428,11 @@ window.goTo = function(route) {
       { src: 'images/galerie/Transport.jpg', label: 'Transport' }
     ],
     vehicules: [
-      { src: 'images/galerie/Jetour-exterieur.jpg', label: 'Véhicule dédouané et immatriculé — Jetour X70 plus' },
-      { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus — intérieur' },
+      { src: 'images/galerie/Jetour-exterieur.jpg', label: 'Véhicule dédouané et immatriculé : Jetour X70 plus' },
+      { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus, intérieur' },
       { src: 'images/galerie/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
-      { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison véhicule — ATH CI' },
-      { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation véhicule — ATH CI' }
+      { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison d’un véhicule par ATH CI' },
+      { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation d’un véhicule par ATH CI' }
     ]
   };
 
@@ -454,7 +454,7 @@ window.goTo = function(route) {
 
   function showSlide() {
     var item = lbData[lbCurrent];
-    lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' — ' + item.label;
+    lbLabel.textContent = (lbCurrent + 1) + ' / ' + lbData.length + ' · ' + item.label;
     if (item.type === 'youtube') {
       lbImg.style.display = 'none';
       var existing = document.getElementById('lb-yt');
