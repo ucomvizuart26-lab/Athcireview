@@ -422,8 +422,8 @@ a.contact-row:hover{ transform: translateX(3px); }
 .teaser-card--apropos::before { background-image: url('images/bureauathci.png'); }
 .teaser-card--realisations::before { background-image: url('images/dokers-athci.jpg'); }
 .teaser-card--contact::before { 
-  background-image: url('https://i.ibb.co/212zjMXz/contactathci.jpg');
-  background-position: 10% center;
+  background-image: url('images/contact-athci.jpg');
+  background-position: 50% 25%;
 }
 .teaser-card--partenaires::before { background-image: url('images/port-athci.png'); }
 .teaser-grid:hover .teaser-card:hover { filter: brightness(1.15); transform: scale(1.03); }
