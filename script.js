@@ -553,3 +553,45 @@ window.goTo = function(route) {
   }, { passive: true });
 
 })();
+
+/* ── CARTES DE L'ACCUEIL : inclinaison douce qui suit le curseur (ordinateur uniquement) ── */
+(function () {
+  var grid = document.querySelector('.teaser-grid');
+  if (!grid || !window.matchMedia) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  grid.classList.add('tilt-on');
+
+  Array.prototype.forEach.call(grid.querySelectorAll('.teaser-card'), function (card) {
+    var cur = { rx: 0, ry: 0, lift: 0, px: 0, py: 0, zoom: 1.02 };
+    var tgt = { rx: 0, ry: 0, lift: 0, px: 0, py: 0, zoom: 1.02 };
+    var running = false;
+
+    function loop() {
+      var moving = false;
+      for (var k in cur) {
+        cur[k] += (tgt[k] - cur[k]) * 0.12;
+        if (Math.abs(tgt[k] - cur[k]) > 0.001) moving = true; else cur[k] = tgt[k];
+      }
+      card.style.transform = 'perspective(900px) translate3d(0,' + (-cur.lift).toFixed(2) + 'px,0) rotateX(' + cur.rx.toFixed(2) + 'deg) rotateY(' + cur.ry.toFixed(2) + 'deg)';
+      card.style.setProperty('--px', cur.px.toFixed(2) + 'px');
+      card.style.setProperty('--py', cur.py.toFixed(2) + 'px');
+      card.style.setProperty('--zoom', cur.zoom.toFixed(4));
+      if (moving) { requestAnimationFrame(loop); } else { running = false; }
+    }
+    function kick() { if (!running) { running = true; requestAnimationFrame(loop); } }
+
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      tgt.ry = x * 8; tgt.rx = -y * 6; tgt.lift = 8;
+      tgt.px = -x * 14; tgt.py = -y * 14; tgt.zoom = 1.09;
+      kick();
+    });
+    card.addEventListener('mouseleave', function () {
+      tgt.rx = 0; tgt.ry = 0; tgt.lift = 0; tgt.px = 0; tgt.py = 0; tgt.zoom = 1.02;
+      kick();
+    });
+  });
+})();
