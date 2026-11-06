@@ -459,7 +459,7 @@ window.goTo = function(route) {
     ],
     vehicules: [
       { src: 'images/galerie/Jetour-exterieur.jpg', label: 'Véhicule dédouané et immatriculé : Jetour X70 plus' },
-      { src: 'https://i.ibb.co/KTTpKgJ/Jetour-inte-rieur.jpg', label: 'Jetour X70 plus, intérieur' },
+      { src: 'images/galerie/Jetour-interieur.jpg', label: 'Jetour X70 plus, intérieur' },
       { src: 'images/galerie/Chery-Tiggo-3x.jpg', label: 'Chery Tiggo 3x' },
       { type: 'youtube', src: 'uiu85CyyJIc', label: 'Livraison d’un véhicule par ATH CI' },
       { type: 'youtube', src: 'tI7PA8BLjYI', label: 'Présentation d’un véhicule par ATH CI' }
