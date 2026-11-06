@@ -17,44 +17,85 @@ window.goTo = function(route) {
 };
 
 (function() {
+  /* SPLASH : cadran segmenté (segments du bleu au vert, quart de tour, fondu) */
   var splash = document.getElementById('splash');
-  var progress = document.getElementById('splash-progress');
-  var start = null;
-  var duration = 5000;
-  var circumference = 2 * Math.PI * 120;
+  var dial = document.getElementById('splash-dial');
+  var svg = document.getElementById('splash-svg');
+  var logo = document.getElementById('splash-logo');
   var hero = document.querySelector('.hero');
   var heroGrid = document.querySelector('.hero-grid');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LOAD = reduce ? 600 : 2800;
+  var OUT = reduce ? 300 : 700;
+  var N = 40;
+  var segs = [];
+  var start = null;
 
   var overlay = document.createElement('div');
   overlay.style.cssText = 'position:fixed;inset:0;background:#000;z-index:99998;opacity:1;pointer-events:none;transition:opacity 0.8s ease;';
   document.body.appendChild(overlay);
   document.body.style.overflow = 'hidden';
 
-  function animateRing(ts) {
+  for (var i = 0; i < N; i++) {
+    var ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    ln.setAttribute('x1', 150); ln.setAttribute('y1', 38);
+    ln.setAttribute('x2', 150); ln.setAttribute('y2', 54);
+    ln.setAttribute('stroke-width', 4);
+    ln.setAttribute('stroke-linecap', 'round');
+    ln.setAttribute('stroke', 'rgba(255,255,255,0.12)');
+    ln.setAttribute('transform', 'rotate(' + (i * 360 / N) + ' 150 150)');
+    dial.appendChild(ln);
+    segs.push(ln);
+  }
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function seg(t, a, b) { return clamp((t - a) / (b - a)); }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeInOut(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function mix(k) {
+    var a = [34, 113, 180], b = [50, 169, 89];
+    return 'rgb(' + a.map(function(v, j) { return Math.round(v + (b[j] - v) * k); }).join(',') + ')';
+  }
+
+  function finish() {
+    splash.style.display = 'none';
+    if (hero) hero.classList.add('hero-animate');
+    if (heroGrid) heroGrid.classList.add('hero-animate');
+    setTimeout(function() {
+      overlay.style.opacity = '0';
+      document.body.style.overflow = '';
+      setTimeout(function() { overlay.remove(); }, 800);
+    }, 100);
+  }
+
+  function animateDial(ts) {
     if (!start) start = ts;
-    var elapsed = ts - start;
-    var t = Math.min(elapsed / duration, 1);
-    var offset = circumference * (1 - t);
-    progress.setAttribute('stroke-dashoffset', offset);
-    if (t < 1) {
-      requestAnimationFrame(animateRing);
+    var ms = ts - start;
+    var k = easeOut(seg(ms, 0, 500));
+    var p = seg(ms, 150, LOAD - 250);
+    for (var i = 0; i < N; i++) {
+      var on = clamp(p * N - i);
+      var e = easeOut(on);
+      segs[i].setAttribute('stroke', e > 0 ? mix(i / (N - 1)) : 'rgba(255,255,255,0.12)');
+      segs[i].setAttribute('stroke-opacity', e > 0 ? (0.25 + 0.75 * e) : 1);
+      var pop = on < 1 ? 1 + 0.35 * Math.sin(Math.PI * clamp(on * 1.4)) : 1;
+      segs[i].setAttribute('y1', 38 - 12 * (pop - 1));
+    }
+    var r = easeInOut(seg(ms, LOAD - 250, LOAD + OUT));
+    dial.setAttribute('transform', 'rotate(' + (r * 90) + ' 150 150)');
+    var o = easeInOut(seg(ms, LOAD, LOAD + OUT));
+    svg.style.opacity = 1 - o;
+    logo.style.opacity = Math.min(k, 1 - o);
+    logo.style.transform = 'scale(' + (0.9 + 0.1 * k) + ')';
+    splash.style.opacity = 1 - o * 0.999;
+    if (ms < LOAD + OUT) {
+      requestAnimationFrame(animateDial);
     } else {
-      splash.style.transition = 'opacity 0.5s ease';
-      splash.style.opacity = '0';
-      setTimeout(function() {
-        splash.style.display = 'none';
-        if (hero) hero.classList.add('hero-animate');
-        if (heroGrid) heroGrid.classList.add('hero-animate');
-        setTimeout(function() {
-          overlay.style.opacity = '0';
-          document.body.style.overflow = '';
-          setTimeout(function() { overlay.remove(); }, 800);
-        }, 100);
-      }, 500);
+      finish();
     }
   }
 
-  requestAnimationFrame(animateRing);
+  requestAnimationFrame(animateDial);
 })();
 
 (function () {

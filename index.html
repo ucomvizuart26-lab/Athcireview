@@ -49,11 +49,11 @@
 
 <!-- ============ SPLASH SCREEN ============ -->
 <div id="splash" style="position:fixed;inset:0;background:#000000;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;">
-    <svg style="position:absolute;inset:0;width:160px;height:160px;" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-      <circle id="splash-progress" cx="140" cy="140" r="120" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="753.98" stroke-dashoffset="753.98" transform="rotate(-90 140 140)"/>
+  <div style="position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;">
+    <svg id="splash-svg" style="position:absolute;inset:0;width:200px;height:200px;" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g id="splash-dial"></g>
     </svg>
-    <img src="images/ATH-CI-vertical-web.png" alt="ATH CI" style="position:relative;z-index:1;width:70px;">
+    <img id="splash-logo" src="images/ATH-CI-vertical-web.png" alt="ATH CI" style="position:relative;z-index:1;width:70px;opacity:0;">
   </div>
 </div>
 
