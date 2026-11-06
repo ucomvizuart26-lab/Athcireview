@@ -106,7 +106,7 @@
     "desservis en Afrique de l'Ouest": 'served in West Africa',
     'modes': 'modes',
     'Maritime · Aérien · Terrestre · Ferroviaire': 'Sea · Air · Road · Rail',
-    'délai moyen de dédouanement, 24h pour les denrées périssables': 'average customs clearance time, 24h for perishable goods',
+    '24h pour les marchandises périssables, 48h pour les autres marchandises': '24h for perishable goods, 48h for all other goods',
     "PRÉSENCE STRATÉGIQUE EN AFRIQUE DE L'OUEST": 'STRATEGIC PRESENCE IN WEST AFRICA',
     'ATH CI opère dans les hubs qui font bouger vos marchandises.': 'ATH CI operates in the hubs that keep your goods moving.',
     'Ports, aéroports et corridors terrestres : nous facilitons vos flux commerciaux entre la Chine et les principaux marchés ouest-africains.': 'Ports, airports and land corridors: we facilitate your trade flows between China and the main West African markets.',
